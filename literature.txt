@@ -1,0 +1,20 @@
+### Books and papers relevant to the work
+
+	PAPERS
+- MapNet paper
+
+- PoseNet paper
+
+- visualising and understanding convolutional networks
+
+- visualising the loss landscape for neural nets
+
+- structure from conv-nets
+
+	BOOKS
+- SSY097 course book : for camera pose estimation theory
+
+- multiple view geometry : 
+
+- photogrammetric
+

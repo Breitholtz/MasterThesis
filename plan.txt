@@ -1,0 +1,47 @@
+--------- Plan for the thesis work -----------------
+
+Title: 
+	 An investigation of the performance of CNN on camera pose estimation
+
+Questions: 
+	 How does the network learn the movement of information?
+
+	 How can we influence it? 
+
+	 Learning the dataset or learning the rules that governs images' movement
+
+	 Finding minimal examples of changes in images and then doing experiments to confirm the behaviour
+ 
+
+Parts: 
+
+	 Theory gathering and consolidation
+		 >> How does the networks learn the specifics.
+
+		 >> Can we interfere or interact with the process in some way?
+
+	 Use theoretical reasoning and plan of attack
+		 >> Make a plan of the experiments that would need to be done
+
+	 Implement examples that show the weaknesses of the NN approach; many, few?
+
+	 Report in the end
+
+		 Deal with stuff when it comes up.  
+
+Milestones: 
+
+	 When to be done with what
+
+Have a coarse plan at the beginning 
+
+Evaluate the plan at the end of theory gathering and maybe
+
+Workworkwork
+Start date: 
+
+	Final exam on 7/6-19
+
+	Then rest until somewhere around 3/7-19.
+
+	 Torsten is at summer school in early-mid july
