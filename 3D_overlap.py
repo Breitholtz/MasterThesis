@@ -218,7 +218,7 @@ for batch_idx, (data, target) in enumerate(loader):
       indices_prev=indices
       continue
   matches=0
-  '''
+  
  
   L=img.shape[0]*img.shape[1]
   L2=int(np.floor((L*percentage)/100.))
@@ -253,18 +253,18 @@ for batch_idx, (data, target) in enumerate(loader):
     Y=(indices_prev[0][i][0]-img.shape[0]/2.-v0)/(ay/Z)
 
 # we get the 3D world coordinates by multiplying the 3D-point with the pose
-    print np.matmul(poses_prev,[X, Y, Z, 1])
+    #print np.matmul(poses_prev,[X, Y, Z, 1])
 
 # we now multiply with the inverse of the second pose to get the point in camera 2 coords
     D=np.matmul(poseinv,np.matmul(poses_prev,[X, Y, Z, 1]))
-    print D
+    #print D
 
 # save X,Y in a list
     dpoints.append([img.shape[1]/2.+u0+(D[0])*(ax/Z), img.shape[0]/2.+v0+(D[1])*(ay/Z)] )
-    print dpoints
-    print indices[0][i]
-    print indices_prev[0][i]
-    sys.exit(-1)
+    #print dpoints
+    #print indices[0][i]
+    #print indices_prev[0][i]
+  print dpoints
   sys.exit(-1)  
   
 # when all the projected points are known we just compare them to the top X% of gradient points in frame 2 and save the overlap
@@ -295,7 +295,7 @@ for batch_idx, (data, target) in enumerate(loader):
 
   indices_prev=indices
   poses_prev=poses
-  '''
+  
   print batch_idx
   if batch_idx % 200 == 0:
     print '{:d} / {:d}'.format(batch_idx, len(loader))
