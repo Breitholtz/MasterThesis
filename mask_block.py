@@ -109,7 +109,7 @@ if CUDA:
                          #frameSize=(img.size(2), img.size(1)))
 #print 'Initialized VideoWriter to {:s} with frames size {:d} x {:d}'.\
  # format(out_filename, img.size(2), img.size(1))
-
+'''
 print 'Calculating mean colour of dataset'
 S=[0,0,0]
 for idx, (data, target) in enumerate(loader):
@@ -129,7 +129,7 @@ for idx, (data, target) in enumerate(loader):
 print S/idx
 MEAN=np.around(S/idx)
 ## TODO: this RGB mean part takes 24s currently which frankly is disgustingly slow. Make it faster!
-
+'''
 
 # inference
 cm_jet = plt.cm.get_cmap('jet')
@@ -189,6 +189,11 @@ for batch_idx, (data, target) in enumerate(loader):
   sort = np.sort(normgrad,axis=None)
   ## this indices is the sorted list of image coordinates w.r.t gradient values from smallest to largest
   indices = np.dstack(np.unravel_index(np.argsort(normgrad.ravel()),(img.shape[0],img.shape[1])))
+  print act[indices[0,1,0],indices[0,1,1]]
+  print normgrad[indices[0,1,0],indices[0,1,1]]
+  print act[indices[0,10000,0],indices[0,10000,1]]
+  print normgrad[indices[0,10000,0],indices[0,10000,1]]
+  sys.exit(-1)
 
 
 

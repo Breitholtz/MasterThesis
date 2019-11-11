@@ -32,8 +32,8 @@ parser.add_argument('--config_file', type=str,
                     help='configuration file used for training')
 parser.add_argument('--device', type=str, default='0', help='GPU device(s)')
 parser.add_argument('--val', action='store_true', help='Use val split')
-parser.add_argument('--output_dir', type=str, required=True,
-  help='Output directory for video')
+parser.add_argument('--frames', type=int,help='The amount of frames you want to skip when comparing the overlap between frames.')
+parser.add_argument('--percent',type=int,help='percentage of gradient points considered')
 args = parser.parse_args()
 if 'CUDA_VISIBLE_DEVICES' not in os.environ:
   os.environ['CUDA_VISIBLE_DEVICES'] = args.device
@@ -135,6 +135,17 @@ scene_dir=osp.join(data_dir,args.scene)
 seq_dir=[osp.join(scene_dir,'seq-{:02d}'.format(i)) for i in seqs]
 #print seq_dir
   
+
+def check_around(dpoints,xminus,xplus,yminus,yplus):
+    X2=dpoints[i][0]
+    Y2=dpoints[i][1]
+    for j in range(-xminus,xplus,1):
+	for k in range(-yminus,yplus,1):
+		if(binmat[X2+j][Y2+k]==1):
+			return 1
+    return 0
+
+
 match_percentage=0
 cm_jet = plt.cm.get_cmap('jet')
 for batch_idx, (data, target) in enumerate(loader):
@@ -154,29 +165,167 @@ for batch_idx, (data, target) in enumerate(loader):
   #img = img.transpose((1, 2, 0))
  
 
- # get pose and depth, works for 7Scenes dataset; probably really slow..
-  if not train:
+ # get pose and depth, works for 7Scenes chess dataset; probably really slow..
+  if args.scene=='chess':
+   if not train:
       if batch_idx<1000:
         poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
         depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
       else:
         poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
         depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
-  else:
+   else:
       if batch_idx<1000:
         poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
         depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
-      elif batch_idx<=2000 and batch_idx>=1000:
+      elif batch_idx<2000 and batch_idx>=1000:
         poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
         depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
-      elif batch_idx<=3000 and batch_idx>=2000:
+      elif batch_idx<3000 and batch_idx>=2000:
         poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-2000)))
         depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-2000)))
       else:
         poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-3000)))
         depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-3000)))
-      
-  # resize the depth to be the same as the RGB image
+  elif args.scene=='fire':
+    if not train:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      else:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+    else:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      else:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+  elif args.scene=='heads':
+    if not train:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+    else:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+  elif args.scene=='stairs':
+    if train:
+        if batch_idx<500:
+         poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+         depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+        elif batch_idx<1000 and batch_idx>=500:
+         poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-500)))
+         depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-500)))
+        elif batch_idx<1500 and batch_idx>=1000:
+         poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+         depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+        else:
+         poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-1500)))
+         depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-1500)))
+    else:
+       if batch_idx<500:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+       else:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-500)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-500)))
+  elif args.scene=='office':
+   if not train:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      elif batch_idx<2000 and batch_idx>=1000:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+      elif batch_idx<3000 and batch_idx>=2000:
+        poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-2000)))
+        depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-2000)))
+      else:
+        poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-3000)))
+        depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-3000)))
+   else:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      elif batch_idx<2000 and batch_idx>=1000:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+      elif batch_idx<3000 and batch_idx>=2000:
+        poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-2000)))
+        depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-2000)))
+      elif batch_idx<4000 and batch_idx>=3000:
+        poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-3000)))
+        depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-3000)))
+      elif batch_idx<5000 and batch_idx>=4000:
+        poses=np.loadtxt(osp.join(seq_dir[4],'frame-{:06d}.pose.txt'.format(batch_idx-4000)))
+        depth=imageio.imread(osp.join(seq_dir[4],'frame-{:06d}.depth.png'.format(batch_idx-4000)))
+      else:
+        poses=np.loadtxt(osp.join(seq_dir[5],'frame-{:06d}.pose.txt'.format(batch_idx-5000)))
+        depth=imageio.imread(osp.join(seq_dir[5],'frame-{:06d}.depth.png'.format(batch_idx-5000)))
+  elif args.scene=='pumpkin':
+   if not train:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      elif batch_idx<2000 and batch_idx>=1000:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+   else:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      elif batch_idx<2000 and batch_idx>=1000:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+      elif batch_idx<3000 and batch_idx>=2000:
+        poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-2000)))
+        depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-2000)))
+      elif batch_idx<4000 and batch_idx>=3000:
+        poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-3000)))
+        depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-3000)))
+  elif args.scene=='redkitchen':
+   if not train:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      elif batch_idx<2000 and batch_idx>=1000:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+      elif batch_idx<3000 and batch_idx>=2000:
+        poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-2000)))
+        depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-2000)))
+      elif batch_idx<4000 and batch_idx>=3000:
+        poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-3000)))
+        depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-3000)))
+      else:
+        poses=np.loadtxt(osp.join(seq_dir[4],'frame-{:06d}.pose.txt'.format(batch_idx-4000)))
+        depth=imageio.imread(osp.join(seq_dir[4],'frame-{:06d}.depth.png'.format(batch_idx-4000)))
+   else:
+      if batch_idx<1000:
+        poses=np.loadtxt(osp.join(seq_dir[0],'frame-{:06d}.pose.txt'.format(batch_idx)))
+        depth=imageio.imread(osp.join(seq_dir[0],'frame-{:06d}.depth.png'.format(batch_idx)))
+      elif batch_idx<2000 and batch_idx>=1000:
+        poses=np.loadtxt(osp.join(seq_dir[1],'frame-{:06d}.pose.txt'.format(batch_idx-1000)))
+        depth=imageio.imread(osp.join(seq_dir[1],'frame-{:06d}.depth.png'.format(batch_idx-1000)))
+      elif batch_idx<3000 and batch_idx>=2000:
+        poses=np.loadtxt(osp.join(seq_dir[2],'frame-{:06d}.pose.txt'.format(batch_idx-2000)))
+        depth=imageio.imread(osp.join(seq_dir[2],'frame-{:06d}.depth.png'.format(batch_idx-2000)))
+      elif batch_idx<4000 and batch_idx>=3000:
+        poses=np.loadtxt(osp.join(seq_dir[3],'frame-{:06d}.pose.txt'.format(batch_idx-3000)))
+        depth=imageio.imread(osp.join(seq_dir[3],'frame-{:06d}.depth.png'.format(batch_idx-3000)))
+      elif batch_idx<5000 and batch_idx>=4000:
+        poses=np.loadtxt(osp.join(seq_dir[4],'frame-{:06d}.pose.txt'.format(batch_idx-4000)))
+        depth=imageio.imread(osp.join(seq_dir[4],'frame-{:06d}.depth.png'.format(batch_idx-4000)))
+      elif batch_idx<6000 and batch_idx>=5000:
+        poses=np.loadtxt(osp.join(seq_dir[5],'frame-{:06d}.pose.txt'.format(batch_idx-5000)))
+        depth=imageio.imread(osp.join(seq_dir[5],'frame-{:06d}.depth.png'.format(batch_idx-5000)))
+      else:
+        poses=np.loadtxt(osp.join(seq_dir[6],'frame-{:06d}.pose.txt'.format(batch_idx-6000)))
+        depth=imageio.imread(osp.join(seq_dir[6],'frame-{:06d}.depth.png'.format(batch_idx-6000)))
+ 
+   
+       # resize the depth to be the same as the RGB image
  # depth=trans.resize(depth,(256,341),anti_aliasing=True,mode='reflect')
  # plt.imshow(depth)
  # plt.show()
@@ -201,7 +350,7 @@ for batch_idx, (data, target) in enumerate(loader):
  ## presence is defined if an important point is within a certain pixel distance
   
   # TODO: maybe make into a commmand line argument 
-  percentage = 0.2
+  percentage = args.percent
 
   normgrad= np.linalg.norm(act, axis=2)
 
@@ -212,12 +361,13 @@ for batch_idx, (data, target) in enumerate(loader):
   if batch_idx==0:
       poses_prev=poses
       indices_prev=indices
+      depth_prev=depth
       continue
   matches=0
   
  
   L=act.shape[0]*act.shape[1]
-  L2=int(np.floor((L*percentage)/100.))
+  L2=int((L*percentage)/100.)
   #print 'L2'
   #print L2
 
@@ -231,32 +381,37 @@ for batch_idx, (data, target) in enumerate(loader):
   dpoints= []
   poseinv=np.linalg.inv(poses) # invert pose matrix of frame 2
   # this is to get from world coords to camera coordinates of frame 2 
-
-
-
+  XMAX=act.shape[0]
+  YMAX=act.shape[1]
+  binmat=np.zeros((XMAX,YMAX))
+  for j in range(L-1,L-1-L2,-1):
+	binmat[indices[0,j,0]][indices[0,j,1]]=1
   # calculate 3D points from frame 1 then project into frame 2
   for i in range(L-1,L-1-L2,-1):
 
 
-    Z= float(depth[indices_prev[0][i][0]][indices_prev[0][i][1]])
-    if Z<=0:
-     # we dont consider points with depth smaller than or equal to zero
+    Z= float(depth_prev[indices_prev[0][i][0]][indices_prev[0][i][1]])
+    if Z<=0 or Z==65535:
+     # we dont consider points with depth smaller than or equal to zero 
+     # and 65535 are invalid depths according to documentation
      continue
 
 
  # calculate 3D point in camera 1 coords
-    X=(indices_prev[0][i][1]-img.shape[1]/2.-u0)/(ax/Z)
-    Y=(indices_prev[0][i][0]-img.shape[0]/2.-v0)/(ay/Z)
+    X=(indices_prev[0][i][1]-YMAX/2.-u0)/(ax/Z)
+    Y=(indices_prev[0][i][0]-XMAX/2.-v0)/(ay/Z)
 
 # we get the 3D world coordinates by multiplying the 3D-point with the pose
     #print np.matmul(poses_prev,[X, Y, Z, 1])
 
 # we now multiply with the inverse of the second pose to get the point in camera 2 coords
     D=np.matmul(poseinv,np.matmul(poses_prev,[X, Y, Z, 1]))
-    #print D
-
+    X2=int(XMAX/2.+v0+(D[1])*(ay/D[2]))
+    Y2=int(YMAX/2.+u0+(D[0])*(ax/D[2]))
+    if X2>act.shape[0] or Y2>act.shape[1] or X2<0 or Y2<0:
+	continue
 # save X,Y in a list
-    dpoints.append( [int(img.shape[0]/2.+v0+(D[1])*(ay/Z)), int(img.shape[1]/2.+u0+(D[0])*(ax/Z))] ) ## (Y,X) since it is how images are indexed
+    dpoints.append([X2, Y2] ) ## '(Y,X)' technically since it is how images are indexed
     #print dpoints[0][0]
     #print dpoints[0][1]
     #print dpoints
@@ -265,14 +420,32 @@ for batch_idx, (data, target) in enumerate(loader):
     #print indices_prev[0][i]
   
 # when all the projected points are known we just compare them to the top X% of gradient points in frame 2 and save the overlap
-  
+  pad=3
+  xminus=pad
+  xplus=pad
+  yminus=pad
+  yplus=pad
   for i in range(len(dpoints)):
     X2=dpoints[i][0]
     Y2=dpoints[i][1]
-    for j in range(L-1,L-1-L2,-1):
-     X1=indices[0,j,0]
-     Y1=indices[0,j,1]
-     if np.sqrt((X1-X2)**2+(Y1-Y2)**2)<=5:
+    if (X2-xminus)<0:
+	xminus=pad+pad-X2
+    if X2+xplus>=XMAX:
+	xplus=XMAX-X2
+    if (Y2-yminus)<0:
+	yminus=pad+pad-Y2
+    if Y2+yplus>=YMAX:
+	yplus=YMAX-Y2
+    M=check_around(dpoints,xminus,xplus,yminus,yplus)
+    matches=matches+M
+    #for j in range(-xminus,xplus,1):
+#	for k in range(-yminus,yplus,1):
+#		if(binmat[X2+j][Y2+k]==1):
+#			matches=matches+1
+#			break
+  #   X1=indices[0,j,0] 
+  #   Y1=indices[0,j,1]
+     #if ((X1-X2)**2+(Y1-Y2)**2)<=25:
             #print 'found'
             #print X2
             #print indices2[0,j]
@@ -280,8 +453,8 @@ for batch_idx, (data, target) in enumerate(loader):
             #print Y1
             #print Y2
             #print indices[0,i]
-            matches=matches+1
-            break          
+      #      matches=matches+1
+      #      break          
 
 
 
@@ -292,7 +465,7 @@ for batch_idx, (data, target) in enumerate(loader):
 
   indices_prev=indices
   poses_prev=poses
-  
+  depth_prev=depth
   #print match_percentage
   if batch_idx % 200 == 0:
     print '{:d} / {:d}'.format(batch_idx, len(loader))
