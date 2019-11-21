@@ -22,6 +22,7 @@ from torchvision import transforms, models
 import matplotlib.pyplot as plt
 import imageio
 import skimage.transform as trans
+import random
 # config
 parser = argparse.ArgumentParser(description='Activation visualization script')
 parser.add_argument('--dataset', type=str, choices=('7Scenes', 'RobotCar'),
@@ -70,6 +71,10 @@ data_transform = transforms.Compose([
   transforms.ToTensor(),
   transforms.Normalize(mean=stats[0], std=stats[1])])
 target_transform = transforms.Lambda(lambda x: torch.from_numpy(x).float())
+
+######### HERE WE HAVE THE VALUE THAT DICTATES IF WE USE RANDOM SAMPLING OR NOT
+#sampling=True
+sampling=False
 
 # dataset
 train = not args.val
@@ -157,15 +162,30 @@ poses_array=np.zeros((frame_count,4,4))
 #print indices_array
 #print poses_array
 
-
+IDX=0
 match_percentage=0
 cm_jet = plt.cm.get_cmap('jet')
 for batch_idx, (data, target) in enumerate(loader):
+  if batch_idx==0 and sampling==True:
+    L=len(loader)
+    k=int(L*50/float(100))
+#    M=L-frame_count
+    sample_list=random.sample(range(frame_count,L+1),k)
+    sample_list=np.sort(sample_list)
+    L3=len(sample_list)-1
   if CUDA:
     data = data.cuda()
   data_var = Variable(data, requires_grad=True)
-
-
+  if sampling==True: 
+   if batch_idx==sample_list[IDX]:
+      ## do the thing
+    if IDX==L3:
+       # do not increment
+       break
+    else:
+      IDX=IDX+1
+   else:
+      continue
 # gradient and image stuff
   model.zero_grad()
   pose = model(data_var)
@@ -411,7 +431,6 @@ for batch_idx, (data, target) in enumerate(loader):
      # and 65535 are invalid depths according to documentation
      continue
 
-
  # calculate 3D point in camera 1 coords
     X=(indices_array[0][i][1]-YMAX/2.-u0)/(ax/Z)
     Y=(indices_array[0][i][0]-XMAX/2.-v0)/(ay/Z)
@@ -501,7 +520,14 @@ for batch_idx, (data, target) in enumerate(loader):
   #print match_percentage
   if batch_idx % 200 == 0:
     print '{:d} / {:d}'.format(batch_idx, len(loader))
-
-
-print match_percentage/float(batch_idx)
+#batch_idx=1
+result_filename=args.scene+'_{:d}frame.txt'.format(args.frames)#'output.txt'
+f=open(result_filename,'a')
+if sampling==True:
+ print match_percentage/float(L3)
+ f.write('{:d}%:'.format(args.percent)+str(match_percentage/float(L3))+'\n')
+else:
+ print match_percentage/float(batch_idx)
+ f.write('{:d}%:'.format(args.percent)+str(match_percentage/float(batch_idx))+'\n')
+f.close()
 sys.exit(-1)

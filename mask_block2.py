@@ -99,9 +99,10 @@ if CUDA:
   torch.cuda.manual_seed(seed)
   model.cuda()
 
-print (model.feature_extractor.fc.weight.shape)
-sys.exit(-1)
-'''
+#print (model.feature_extractor.fc.weight.shape)
+#sys.exit(-1)
+
+
 print 'Calculating mean colour of dataset'
 S=[0,0,0]
 for idx, (data, target) in enumerate(loader):
@@ -121,7 +122,7 @@ for idx, (data, target) in enumerate(loader):
 print S/idx
 MEAN=np.around(S/idx)
 ## TODO: this RGB mean part takes 24s currently which frankly is disgustingly slow. Make it faster!
-'''
+
 
 # percentage we want to 'grey out'
 percentage = args.percent
@@ -318,6 +319,9 @@ for batch_idx, (data, target) in enumerate(loader):
             out_filename = osp.join(seq_dir[2], 'frame-{:06d}.color.png'. format(batch_idx-1000))
         elif batch_idx<2000 and batch_idx>=1500:
             out_filename = osp.join(seq_dir[3], 'frame-{:06d}.color.png'. format(batch_idx-1500))
+  
+  ### mask out the top gradient points with blocks until a certain percentage of the image has been blocked out
+  
   newimg=img
   bin_mat=np.zeros((256,341))
   #  BLK= np.mean(np.mean(img,axis=0),axis=0)
