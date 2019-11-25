@@ -1,0 +1,54 @@
+10% : Error in translation:
+ median 0.45 m
+  mean 0.54 m
+Error in rotation:
+ median 8.40 degrees
+ mean 11.79 degree 
+20% : Error in translation:
+ median 0.76 m
+  mean 0.79 m
+Error in rotation:
+ median 13.49 degrees
+ mean 18.13 degree 
+30% : Error in translation:
+ median 1.01 m
+  mean 1.02 m
+Error in rotation:
+ median 19.05 degrees
+ mean 25.13 degree 
+40% : Error in translation:
+ median 1.19 m
+  mean 1.17 m
+Error in rotation:
+ median 25.12 degrees
+ mean 30.73 degree 
+50% : Error in translation:
+ median 1.27 m
+  mean 1.25 m
+Error in rotation:
+ median 28.41 degrees
+ mean 33.87 degree 
+60% : Error in translation:
+ median 1.33 m
+  mean 1.31 m
+Error in rotation:
+ median 30.74 degrees
+ mean 35.87 degree 
+70% : Error in translation:
+ median 1.35 m
+  mean 1.34 m
+Error in rotation:
+ median 32.44 degrees
+ mean 37.21 degree 
+80% : Error in translation:
+ median 1.36 m
+  mean 1.33 m
+Error in rotation:
+ median 32.57 degrees
+ mean 37.30 degree 
+90% : Error in translation:
+ median 1.35 m
+  mean 1.34 m
+Error in rotation:
+ median 33.55 degrees
+ mean 38.04 degree 

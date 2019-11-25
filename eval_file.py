@@ -205,7 +205,7 @@ q_loss = np.asarray([q_criterion(p, t) for p, t in zip(pred_poses[:, 3:],
 #q_loss = eval_func(q_loss)
 #print '{:s} error in translation = {:3.2f} m\n' \
 #      '{:s} error in rotation    = {:3.2f} degrees'.format(eval_str, t_loss,
-filename=args.scene+'_masking.txt'
+filename=args.scene+'_masktop.txt'
 f=open(filename,'a')
 f.write(str(args.percent)+'% : Error in translation:\n median {:3.2f} m\n  mean {:3.2f} m\n' \
     'Error in rotation:\n median {:3.2f} degrees\n mean {:3.2f} degree \n'.format(np.median(t_loss), np.mean(t_loss),
