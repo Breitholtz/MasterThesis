@@ -1,0 +1,1465 @@
+import matplotlib.pyplot as plt
+import numpy
+import sys
+## amount masked
+percentages=[100,90,80,70,60,50,40,30,20,10,0]
+
+# here we have the values that we got for masking the images from smallest gradient points up.
+# masking was done with the dataset mean for each dataset
+
+
+## TRAIN VALUES
+chess_mean_t=[0.80,0.83,0.76,0.65,0.52,0.39,0.27,0.18,0.11,0.05,0.01]
+redkitchen_mean_t=[1.39,1.33,1.26,1.14,0.98,0.78,0.55,0.33,0.16,0.06,0.02]
+office_mean_t=[1.05,0.82,0.79,0.76,0.69,0.62,0.53,0.43,0.31,0.18,0.01]
+pumpkin_mean_t=[0.85,0.74,0.71,0.68,0.64,0.59,0.53,0.44,0.33,0.19,0.02]
+fire_mean_t=[0.79,0.83,0.82,0.79,0.75,0.68,0.58,0.41,0.21,0.08,0.02]
+heads_mean_t=[0.46,0.46,0.45,0.43,0.41,0.37,0.33,0.27,0.21,0.13,0.01]
+stairs_mean_t=[1.14,0.92,0.87,0.81,0.71,0.59,0.44,0.30,0.17,0.07,0.02]
+
+chess_median_t=[0.81,0.82,0.74,0.63,0.50,0.35,0.24,0.16,0.10,0.05,0.01]
+redkitchen_median_t=[1.32,1.23,1.15,1.02,0.86,0.68,0.48,0.29,0.13,0.04,0.01]
+office_median_t=[1.05,0.81,0.79,0.76,0.70,0.62,0.53,0.42,0.30,0.15,0.01]
+pumpkin_median_t=[0.75,0.66,0.62,0.59,0.55,0.52,0.48,0.41,0.32,0.19,0.02]
+fire_median_t=[0.78,0.79,0.79,0.77,0.72,0.67,0.54,0.35,0.17,0.06,0.02]
+heads_median_t=[0.42,0.41,0.40,0.38,0.34,0.31,0.27,0.23,0.18,0.12,0.01]
+stairs_median_t=[1.12,0.84,0.81,0.77,0.68,0.56,0.41,0.26,0.14,0.05,0.01]
+
+chess_mean_r=[31.72,31.35,28.16,23.89,19.47,15.24,11.35,7.81,4.64,1.99,0.56]
+redkitchen_mean_r=[52.57,48.95,47.06,43.97,38.84,31.63,22.85,13.76,6.41,2.11,0.39]
+office_mean_r=[52.56,50.30,52.50,50.20,44.48,37.53,30.88,24.51,17.74,9.87,0.55]
+pumpkin_mean_r=[36.82,33.75,34.10,32.61,29.62,25.80,21.70,17.41,12.65,6.74,0.47]
+fire_mean_r=[39.76,40.19,38.70,36.67,34.34,31.27,26.28,18.12,8.29,2.57,0.88]
+heads_mean_r=[22.60,22.28,21.13,20.24,19.28,17.93,16.05,13.51,10.20,6.23,1.81]
+stairs_mean_r=[34.03,33.88,33.84,33.05,30.57,26.47,21.04,14.94,8.94,3.84,0.83]
+
+chess_median_r=[27.49,29.16,26.00,21.48,17.27,13.50,9.93,6.95,4.06,1.71,0.53]
+redkitchen_median_r=[43.83,38.80,39.63,38.09,34.44,27.40,19.36,10.81,4.27,1.40,0.37]
+office_median_r=[49.54,44.05,44.32,41.27,36.56,31.16,25.24,19.33,13.58,7.34,0.46]
+pumpkin_median_r=[37.38,32.87,33.67,31.80,28.43,24.05,19.85,15.21,11.05,6.02,0.33]
+fire_median_r=[35.44,36.37,35.80,34.28,32.88,30.71,24.67,15.50,6.93,2.18,0.77]
+heads_median_r=[19.85,17.52,17.16,17.25,16.84,15.83,14.15,11.76,8.97,5.77,1.61]
+stairs_median_r=[32.82,38.13,35.21,32.69,30.25,25.93,19.27,12.77,6.92,3.10,0.57]
+
+
+
+
+
+
+## VALIDATION VALUES
+
+val_chess_mean_t=[0.80,0.86,0.79,0.69,0.59,0.46,0.35,0.25,0.20,0.16,0.13]
+val_redkitchen_mean_t=[1.48,1.41,1.35,1.26,1.13,0.97,0.79,0.61,0.48,0.40,0.36]
+val_office_mean_t=[1.19,0.89,0.88,0.84,0.78,0.72,0.64,0.55,0.45,0.34,0.22]
+val_pumpkin_mean_t=[0.77,0.76,0.75,0.72,0.68,0.64,0.61,0.56,0.50,0.41,0.29]
+val_fire_mean_t=[0.80,0.84,0.83,0.81,0.78,0.74,0.66,0.55,0.43,0.36,0.32]
+val_heads_mean_t=[0.47,0.48,0.48,0.47,0.45,0.43,0.40,0.36,0.31,0.25,0.19]
+val_stairs_mean_t=[1.08,0.87,0.81,0.77,0.71,0.64,0.57,0.51,0.46,0.42,0.39]
+
+val_chess_median_t=[0.81,0.85,0.79,0.72,0.61,0.46,0.31,0.21,0.14,0.10,0.08]
+val_redkitchen_median_t=[1.52,1.47,1.43,1.32,1.12,0.92,0.70,0.50,0.37,0.28,0.23]
+val_office_median_t=[1.16,0.90,0.89,0.84,0.77,0.70,0.61,0.51,0.39,0.28,0.17]
+val_pumpkin_median_t=[0.71,0.72,0.71,0.66,0.64,0.61,0.58,0.54,0.50,0.39,0.22]
+val_fire_median_t=[0.76,0.82,0.81,0.81,0.80,0.76,0.67,0.55,0.42,0.33,0.27]
+val_heads_median_t=[0.43,0.41,0.43,0.42,0.40,0.37,0.34,0.31,0.27,0.23,0.18]
+val_stairs_median_t=[1.01,0.84,0.86,0.83,0.74,0.63,0.53,0.46,0.44,0.41,0.36]
+
+val_chess_mean_r=[27.77,28.14,25.31,22.51,19.48,16.08,12.69,9.55,7.03,5.20,4.35]
+val_redkitchen_mean_r=[44.94,39.79,38.63,37.16,34.49,29.97,23.74,16.86,11.28,8.46,7.78]
+val_office_mean_r=[52.60,54.03,55.16,52.30,46.82,40.62,34.76,29.13,22.96,15.73,6.94]
+val_pumpkin_mean_r=[42.59,45.22,48.18,46.79,43.05,38.44,33.47,28.25,22.49,15.61,7.75]
+val_fire_mean_r=[46.34,46.34,45.25,43.92,42.39,41.19,36.36,30.14,23.33,18.93,16.12]
+val_heads_mean_r=[28.32,28.16,28.08,27.90,27.43,26.55,25.16,23.20,20.59,17.43,14.13]
+val_stairs_mean_r=[27.07,23.04,23.30,23.53,22.89,21.50,19.68,17.64,15.54,13.48,11.84]
+
+val_chess_median_r=[23.06,24.79,21.83,19.28,16.64,13.43,10.92,8.11,5.30,3.61,3.22]
+val_redkitchen_median_r=[39.80,34.47,34.05,34.06,32.25,26.54,20.92,14.57,8.46,6.00,4.92]
+val_office_median_r=[49.47,48.96,49.16,46.79,42.73,37.20,30.80,24.43,18.29,11.88,5.13]
+val_pumpkin_median_r=[40.44,45.90,48.47,45.63,40.37,35.50,29.57,23.30,17.56,10.97,4.02]
+val_fire_median_r=[42.78,42.97,42.01,40.59,39.40,38.14,35.16,28.18,18.88,14.08,11.69]
+val_heads_median_r=[25.47,26.69,27.25,27.07,26.60,25.70,24.37,22.27,19.49,15.94,13.33]
+val_stairs_median_r=[29.09,19.52,19.04,18.75,18.50,17.44,15.87,14.40,13.79,13.18,11.76]
+
+
+
+### HERE we have the values for masking increasing amounts of the images from the largest to smallest gradient points
+
+
+## TRAIN VALUES
+chess_mean_t_2=[0.8,0.84,0.81,0.76,0.69,0.59,0.47,0.34,0.21,0.09,0.01]
+redkitchen_mean_t_2=[1.39,1.43,1.43,1.39,1.31,1.20,1.04,0.83,0.56,0.24,0.02]
+office_mean_t_2=[1.05,0.82,0.80,0.77,0.71,0.64,0.54,0.42,0.30,0.17,0.01]
+pumpkin_mean_t_2=[0.85,0.74,0.72,0.70,0.67,0.63,0.56,0.46,0.32,0.16,0.02]
+fire_mean_t_2=[0.79,0.88,0.87,0.85,0.81,0.73,0.59,0.40,0.20,0.07,0.02]
+heads_mean_t_2=[0.46,0.51,0.50,0.49,0.47,0.45,0.42,0.38,0.31,0.19,0.01]
+stairs_mean_t_2=[1.14,0.93,0.88,0.84,0.80,0.74,0.65,0.51,0.33,0.14,0.02]
+
+chess_median_t_2=[0.81,0.81,0.81,0.76,0.69,0.57,0.43,0.28,0.14,0.06,0.01]
+redkitchen_median_t_2=[1.32,1.38,1.39,1.34,1.26,1.13,0.97,0.77,0.50,0.19,0.01]
+office_median_t_2=[1.05,0.81,0.80,0.77,0.70,0.62,0.52,0.39,0.27,0.14,0.01]
+pumpkin_median_t_2=[0.75,0.68,0.65,0.63,0.61,0.57,0.51,0.41,0.27,0.13,0.02]
+fire_median_t_2=[0.78,0.85,0.84,0.82,0.80,0.73,0.58,0.32,0.13,0.04,0.02]
+heads_median_t_2=[0.42,0.47,0.46,0.44,0.43,0.41,0.36,0.34,0.29,0.18,0.01]
+stairs_median_t_2=[1.12,0.88,0.86,0.82,0.78,0.74,0.65,0.50,0.29,0.09,0.01]
+
+chess_mean_r_2=[31.72,30.75,29.51,27.10,23.65,19.35,14.58,9.82,5.57,2.34,0.56]
+redkitchen_mean_r_2=[52.57,54.84,57.47,58.40,57.76,54.99,49.40,39.80,25.26,8.20,0.39]
+office_mean_r_2=[52.56,52.92,51.55,48.74,44.20,38.30,30.98,22.98,15.21,8.21,0.55]
+pumpkin_mean_r_2=[36.82,39.48,39.57,36.53,32.57,28.28,23.67,18.45,12.41,6.01,0.47]
+fire_mean_r_2=[39.76,41.77,40.96,39.48,37.14,33.33,26.99,17.69,8.49,2.65,0.88]
+heads_mean_r_2=[22.60,23.07,22.76,22.43,21.96,21.18,19.91,17.86,14.65,9.59,1.81]
+stairs_mean_r_2=[34.03,34.10,33.94,33.72,33.02,31.12,27.44,21.56,13.64,5.51,0.83]
+
+chess_median_r_2=[27.49,27.65,26.07,23.91,20.89,17.26,12.89,8.46,4.41,1.71,0.53]
+redkitchen_median_r_2=[43.83,44.00,48.48,50.85,50.71,48.77,45.32,37.76,23.38,5.73,0.37]
+office_median_r_2=[49.54,47.15,45.94,43.30,39.42,33.67,26.87,19.60,13.10,6.51,0.46]
+pumpkin_median_r_2=[37.38,38.46,38.90,35.98,32.09,27.20,22.22,16.87,10.93,5.44,0.33]
+fire_median_r_2=[35.44,36.28,35.80,35.29,34.02,31.08,23.77,12.44,4.25,1.31,0.77]
+heads_median_r_2=[19.85,18.75,18.73,18.75,18.45,17.86,16.67,14.64,11.88,8.13,1.61]
+stairs_median_r_2=[32.82,38.08,37.45,36.27,35.09,32.48,28.03,21.67,13.48,5.18,0.57]
+
+
+## VALIDATION VALUES
+
+val_chess_mean_t_2=[0.80,0.87,0.84,0.77,0.68,0.57,0.45,0.34,0.25,0.17,0.13]
+val_redkitchen_mean_t_2=[1.48,1.50,1.50,1.46,1.40,1.30,1.18,1.02,0.82,0.58,0.36]
+val_office_mean_t_2=[1.19,0.92,0.89,0.85,0.74,0.74,0.66,0.56,0.45,0.34,0.22]
+val_pumpkin_mean_t_2=[0.77,0.77,0.76,0.73,0.70,0.66,0.62,0.56,0.48,0.38,0.29]
+val_fire_mean_t_2=[0.80,0.91,0.90,0.87,0.83,0.77,0.68,0.56,0.43,0.35,0.32]
+val_heads_mean_t_2=[0.47,0.51,0.50,0.49,0.48,0.46,0.44,0.41,0.36,0.29,0.19]
+val_stairs_mean_t_2=[1.08,0.87,0.77,0.70,0.66,0.62,0.59,0.56,0.52,0.47,0.39]
+
+val_chess_median_t_2=[0.81,0.86,0.83,0.75,0.66,0.55,0.42,0.30,0.19,0.12,0.08]
+val_redkitchen_median_t_2=[1.52,1.58,1.60,1.56,1.49,1.36,1.19,0.97,0.74,0.46,0.23]
+val_office_median_t_2=[1.16,0.91,0.88,0.84,0.75,0.75,0.66,0.54,0.42,0.29,0.17]
+val_pumpkin_median_t_2=[0.71,0.73,0.71,0.69,0.65,0.62,0.60,0.55,0.48,0.35,0.22]
+val_fire_median_t_2=[0.76,0.90,0.88,0.85,0.81,0.75,0.67,0.55,0.41,0.31,0.27]
+val_heads_median_t_2=[0.43,0.42,0.43,0.43,0.41,0.39,0.36,0.34,0.30,0.25,0.18]
+val_stairs_median_t_2=[1.01,0.86,0.73,0.65,0.59,0.55,0.52,0.50,0.50,0.46,0.36]
+
+val_chess_mean_r_2=[27.77,28.00,26.85,24.86,21.84,18.14,14.30,10.65,7.66,5.54,4.35]
+val_redkitchen_mean_r_2=[44.94,44.23,46.07,46.84,46.50,44.59,40.70,34.27,24.80,13.25,7.78]
+val_office_mean_r_2=[52.60,54.51,52.68,50.11,41.87,41.87,36.37,30.06,23.27,15.97,6.94]
+val_pumpkin_mean_r_2=[42.59,52.82,53.41,49.70,44.95,39.93,34.67,28.84,22.29,15.00,7.75]
+val_fire_mean_r_2=[46.34,49.16,47.93,46.08,43.82,40.95,36.96,31.44,24.86,19.04,16.12]
+val_heads_mean_r_2=[28.32,29.46,29.85,29.75,29.35,28.63,27.46,25.74,23.19,19.48,14.13]
+val_stairs_mean_r_2=[27.07,23.68,22.33,22.05,21.94,21.61,20.88,19.39,16.98,14.11,11.84]
+
+val_chess_median_r_2=[23.06,23.69,22.55,21.27,18.87,15.30,11.56,8.50,6.05,4.37,3.22]
+val_redkitchen_median_r_2=[39.80,38.85,41.12,41.87,41.78,40.91,37.81,32.17,22.88,10.73,4.92]
+val_office_median_r_2=[49.47,50.47,48.99,45.38,36.41,36.41,30.77,24.47,17.92,12.10,5.13]
+val_pumpkin_median_r_2=[40.44,53.58,54.46,50.43,44.52,37.59,31.17,24.73,18.27,10.57,4.02]
+val_fire_median_r_2=[42.78,44.08,42.77,41.04,38.87,36.42,32.03,25.52,18.98,14.93,11.69]
+val_heads_median_r_2=[25.47,27.77,28.18,28.02,27.72,27.10,26.07,24.75,22.59,18.43,13.33]
+val_stairs_median_r_2=[29.09,20.43,18.15,17.31,17.10,16.89,16.45,15.85,15.23,14.05,11.76]
+
+### IMAGE MEAN TEST, heads and pumpkin val sets
+
+pumpkin_immean_t=[0.77,0.77,0.76,0.73,0.70,0.66,0.62,0.56,0.48,0.38,0.29]
+pumpkin_immedian_t=[0.71,0.71,0.71,0.68,0.65,0.62,0.60,0.56,0.49,0.35,0.22]
+heads_immean_t=[0.47,0.51,0.50,0.49,0.48,0.46,0.44,0.41,0.36,0.29,0.19]
+heads_immedian_t=[0.43,0.43,0.42,0.42,0.40,0.38,0.36,0.33,0.30,0.25,0.18]
+
+pumpkin_immean_r=[42.59,51.59,52.40,48.90,44.27,39.33,34.11,28.28,21.78,14.65,7.75]
+pumpkin_immedian_r=[40.44,51.89,53.09,49.58,43.83,37.51,31.25,24.72,18.28,10.50,4.02]
+heads_immean_r=[28.32,29.35,29.70,29.57,29.15,28.41,27.23,25.50,22.94,19.27,14.13]
+heads_immedian_r=[25.47,28.02,28.47,28.17,27.68,27.10,26.21,24.93,22.52,18.22,13.33]
+
+### this is the data for masking random pixels  
+
+
+## TRAIN VALUES
+chess_mean_t_3=[0.8,0.85,0.85,0.82,0.73,0.58,0.41,0.25,0.14,0.06,0.01]
+redkitchen_mean_t_3=[1.39,1.50,1.45,1.38,1.27,1.10,0.84,0.53,0.24,0.07,0.02]
+office_mean_t_3=[1.05,0.84,0.81,0.78,0.71,0.63,0.53,0.43,0.31,0.18,0.01]
+pumpkin_mean_t_3=[0.85,0.75,0.74,0.72,0.68,0.63,0.56,0.47,0.34,0.19,0.02]
+fire_mean_t_3=[0.79,0.88,0.87,0.84,0.80,0.75,0.67,0.53,0.30,0.11,0.02]
+heads_mean_t_3=[0.46,0.52,0.51,0.50,0.48,0.47,0.43,0.38,0.30,0.19,0.01]
+stairs_mean_t_3=[1.14,0.99,0.93,0.87,0.81,0.73,0.63,0.50,0.32,0.13,0.02]
+
+chess_median_t_3=[0.81,0.82,0.82,0.81,0.73,0.59,0.41,0.24,0.13,0.05,0.01]
+redkitchen_median_t_3=[1.32,1.50,1.43,1.34,1.20,1.03,0.82,0.52,0.22,0.06,0.01]
+office_median_t_3=[1.05,0.82,0.81,0.78,0.71,0.63,0.53,0.41,0.30,0.16,0.01]
+pumpkin_median_t_3=[0.75,0.66,0.65,0.63,0.60,0.56,0.50,0.42,0.32,0.18,0.02]
+fire_median_t_3=[0.78,0.85,0.84,0.81,0.79,0.74,0.67,0.52,0.26,0.09,0.02]
+heads_median_t_3=[0.42,0.45,0.45,0.44,0.43,0.41,0.38,0.34,0.28,0.17,0.01]
+stairs_median_t_3=[1.12,0.91,0.89,0.84,0.78,0.70,0.62,0.50,0.33,0.11,0.01]
+
+chess_mean_r_3=[31.72,30.82,30.70,29.40,25.88,20.30,13.86,8.17,4.20,1.83,0.56]
+redkitchen_mean_r_3=[52.57,56.64,55.41,54.78,53.63,49.92,40.79,25.84,10.18,2.15,0.39]
+office_mean_r_3=[52.56,51.47,50.63,48.17,43.18,36.49,29.53,22.84,16.30,9.40,0.55]
+pumpkin_mean_r_3=[36.82,45.65,47.20,44.41,39.46,33.49,27.19,20.83,14.16,6.83,0.47]
+fire_mean_r_3=[39.76,43.15,42.23,40.47,38.03,34.98,30.77,23.80,13.16,3.87,0.88]
+heads_mean_r_3=[22.60,23.47,23.38,23.06,22.55,21.71,20.41,18.36,15.15,9.77,1.81]
+stairs_mean_r_3=[34.03,34.65,36.60,36.64,35.33,32.79,28.79,22.94,15.28,6.29,0.83]
+
+chess_median_r_3=[27.49,28.08,28.10,27.43,24.86,19.49,12.96,7.00,3.46,1.53,0.53]
+redkitchen_median_r_3=[43.83,48.91,47.22,47.46,48.78,46.25,38.36,23.49,8.49,1.70,0.37]
+office_median_r_3=[49.54,47.94,47.36,43.77,37.48,31.21,24.70,18.40,12.51,6.46,0.46]
+pumpkin_median_r_3=[37.38,45.30,47.03,44.56,39.63,33.38,26.17,19.25,12.23,5.74,0.33]
+fire_median_r_3=[35.44,37.52,36.88,35.74,34.19,32.00,28.31,21.37,11.06,3.14,0.77]
+heads_median_r_3=[19.85,20.40,20.33,20.12,19.67,18.85,17.51,15.42,12.54,8.35,1.61]
+stairs_median_r_3=[32.82,38.06,37.58,37.70,37.19,35.48,31.17,25.04,15.66,6.02,0.57]
+
+
+## VALIDATION VALUES
+
+val_chess_mean_t_3=[0.80,0.87,0.87,0.84,0.75,0.60,0.44,0.30,0.22,0.16,0.13]
+val_redkitchen_mean_t_3=[1.48,1.57,1.52,1.47,1.39,1.26,1.06,0.81,0.57,0.43,0.36]
+val_office_mean_t_3=[1.19,0.91,0.89,0.86,0.81,0.74,0.65,0.56,0.47,0.36,0.22]
+val_pumpkin_mean_t_3=[0.77,0.77,0.77,0.75,0.72,0.67,0.63,0.57,0.50,0.41,0.29]
+val_fire_mean_t_3=[0.80,0.92,0.90,0.87,0.84,0.79,0.73,0.64,0.50,0.37,0.32]
+val_heads_mean_t_3=[0.47,0.53,0.52,0.51,0.49,0.47,0.45,0.41,0.36,0.29,0.19]
+val_stairs_mean_t_3=[1.08,0.91,0.79,0.72,0.66,0.62,0.58,0.55,0.51,0.45,0.39]
+
+val_chess_median_t_3=[0.81,0.86,0.87,0.84,0.75,0.60,0.41,0.24,0.15,0.11,0.08]
+val_redkitchen_median_t_3=[1.52,1.70,1.64,1.58,1.48,1.31,1.06,0.73,0.44,0.31,0.23]
+val_office_median_t_3=[1.16,0.89,0.87,0.85,0.79,0.72,0.63,0.52,0.40,0.29,0.17]
+val_pumpkin_median_t_3=[0.71,0.68,0.69,0.68,0.65,0.62,0.61,0.57,0.50,0.39,0.22]
+val_fire_median_t_3=[0.76,0.91,0.89,0.85,0.83,0.79,0.74,0.64,0.49,0.35,0.27]
+val_heads_median_t_3=[0.43,0.45,0.45,0.44,0.43,0.41,0.37,0.34,0.30,0.26,0.18]
+val_stairs_median_t_3=[1.01,0.88,0.78,0.66,0.60,0.55,0.51,0.48,0.46,0.44,0.36]
+
+val_chess_mean_r_3=[27.77,27.27,27.82,27.37,24.95,20.45,14.99,10.31,7.24,5.43,4.35]
+val_redkitchen_mean_r_3=[44.94,45.93,44.97,45.07,45.16,43.40,37.77,27.50,15.63,9.22,7.78]
+val_office_mean_r_3=[52.60,52.54,52.45,50.65,46.31,40.71,34.96,29.18,23.22,16.59,6.94]
+val_pumpkin_mean_r_3=[42.59,60.43,62.43,59.30,53.68,46.90,39.92,32.80,25.26,16.69,7.75]
+val_fire_mean_r_3=[46.34,49.85,48.89,47.16,44.95,42.37,39.06,34.16,27.12,20.20,16.12]
+val_heads_mean_r_3=[28.32,31.64,31.54,31.14,30.55,29.69,28.48,26.77,24.30,20.55,14.13]
+val_stairs_mean_r_3=[27.07,24.74,25.31,25.04,24.26,23.16,21.79,20.06,17.69,14.60,11.84]
+
+val_chess_median_r_3=[23.06,23.68,24.51,24.66,22.84,18.37,12.98,8.46,5.05,3.87,3.22]
+val_redkitchen_median_r_3=[39.80,43.12,42.60,41.70,41.23,40.23,36.12,25.28,13.06,6.58,4.92]
+val_office_median_r_3=[49.47,49.92,49.10,46.53,41.71,35.90,30.39,24.90,18.39,11.59,5.13]
+val_pumpkin_median_r_3=[40.44,60.69,64.20,60.88,53.37,45.50,36.93,28.35,20.47,11.61,4.02]
+val_fire_median_r_3=[42.78,45.31,44.24,42.43,40.13,37.87,35.57,30.61,23.67,16.24,11.69]
+val_heads_median_r_3=[25.47,30.37,30.23,29.95,29.42,28.66,27.52,25.94,23.51,19.55,13.33]
+val_stairs_median_r_3=[29.09,21.33,21.31,20.53,19.97,18.76,17.41,16.16,14.89,13.78,11.76]
+
+### These values are for masking 15x15 blocks around the largest gradient points
+### truncated when a certain percentage of the image is masked
+
+'''
+## TRAIN VALUES
+chess_mean_t_4=[0.8,0.79,0.75,0.69,0.62,0.52,0.40,0.28,0.16,0.06,0.01]
+#redkitchen_mean_t_4=[1.39,,0.78,0.57,0.35,0.14,0.02]
+#office_mean_t_4=[1.05,0.38,0.26,0.17,0.09,0.01]
+#pumpkin_mean_t_4=[0.85,,0.33,0.22,0.13,0.06,0.02]
+#fire_mean_t_4=[0.79,,0.35,0.19,0.08,0.03,0.02]
+heads_mean_t_4=[0.46,0.44,0.43,0.40,0.37,0.33,0.28,0.23,0.16,0.09,0.01]
+#stairs_mean_t_4=[1.14,,0.31,0.22,0.15,0.07,0.02]
+
+chess_median_t_4=[0.81,0.79,0.77,0.72,0.63,0.48,0.34,0.21,0.10,0.04,0.01]
+#redkitchen_median_t_4=[1.32,,0.74,0.55,0.32,0.12,0.01]
+#office_median_t_4=[1.05,,0.33,0.22,0.14,0.07,0.01]
+#pumpkin_median_t_4=[0.75,,0.28,0.19,0.11,0.05,0.02]
+#fire_median_t_4=[0.78,,0.29,0.13,0.06,0.03,0.02]
+heads_median_t_4=[0.42,0.41,0.38,0.35,0.32,0.28,0.24,0.19,0.14,0.07,0.01]
+#stairs_median_t_4=[1.12,,0.22,0.13,0.08,0.04,0.01]
+
+chess_mean_r_4=[31.72,30.25,28.41,25.68,22.06,17.95,13.58,9.13,5.10,1.90,0.56]
+#redkitchen_mean_r_4=[52.57,,30.41,20.92,11.28,3.98,0.39]
+#office_mean_r_4=[52.56,,19.07,11.97,6.84,1.65,0.55]
+#pumpkin_mean_r_4=[36.82,,10.38,6.70,3.79,8.95,0.47]
+#fire_mean_r_4=[39.76,,17.31,9.58,4.38,1.68,0.88]
+heads_mean_r_4=[22.60,21.31,20.72,19.89,18.48,16.61,14.32,11.53,8.27,4.59,1.81]
+#stairs_mean_r_4=[34.03,,11.48,7.24,4.13,1.96,0.83]
+
+chess_median_r_4=[27.49,26.35,25.13,22.90,19.83,16.28,12.01,7.87,4.00,1.39,0.13]
+#redkitchen_median_r_4=[43.83,,22.22,14.38,7.59,2.52,0.37]
+#office_median_r_4=[49.54,,15.93,9.99,5.58,2.63,0.46]
+#pumpkin_median_r_4=[37.38,,9.07,5.75,3.18,1.41,0.33]
+#fire_median_r_4=[35.44,,9.96,4.83,2.59,1.30,0.77]
+heads_median_r_4=[19.85,18.07,17.07,16.28,15.89,14.11,12.73,9.61,6.55,3.65,1.61]
+#stairs_median_r_4=[32.82,,9.88,6.01,3.30,1.58,0.57]
+'''
+
+## VALIDATION
+val_chess_mean_t_4=[0.80,0.80,0.77,0.71,0.62,0.52,0.41,0.30,0.22,0.15,0.13]
+val_redkitchen_mean_t_4=[1.48,1.42,1.36,1.29,1.20,1.08,0.93,0.77,0.61,0.46,0.36]
+val_office_mean_t_4=[1.19,0.90,0.85,0.79,0.72,0.63,0.53,0.44,0.35,0.28,0.22]
+val_pumpkin_mean_t_4=[0.77,0.73,0.71,0.68,0.63,0.57,0.49,0.42,0.36,0.32,0.29]
+val_fire_mean_t_4=[0.80,0.80,0.78,0.73,0.68,0.61,0.51,0.42,0.37,0.34,0.32]
+val_heads_mean_t_4=[0.47,0.46,0.45,0.44,0.42,0.39,0.36,0.32,0.28,0.24,0.19]
+val_stairs_mean_t_4=[1.08,0.94,0.82,0.73,0.65,0.58,0.53,0.49,0.46,0.44,0.39]
+
+val_chess_median_t_4=[0.81,0.82,0.78,0.73,0.64,0.51,0.36,0.23,0.15,0.10,0.08]
+val_redkitchen_median_t_4=[1.52,1.39,1.29,1.23,1.16,1.03,0.89,0.71,0.53,0.35,0.23]
+val_office_median_t_4=[1.16,0.91,0.87,0.83,0.75,0.62,0.50,0.39,0.30,0.23,0.17]
+val_pumpkin_median_t_4=[0.71,0.71,0.69,0.67,0.63,0.57,0.51,0.41,0.32,0.26,0.22]
+val_fire_median_t_4=[0.76,0.76,0.74,0.70,0.64,0.59,0.49,0.40,0.33,0.29,0.27]
+val_heads_median_t_4=[0.43,0.43,0.41,0.40,0.38,0.34,0.30,0.27,0.24,0.21,0.18]
+val_stairs_median_t_4=[1.01,0.89,0.80,0.69,0.59,0.51,0.47,0.43,0.41,0.40,0.36]
+
+val_chess_mean_r_4=[27.77,27.58,26.40,24.58,21.65,17.81,13.81,10.28,7.37,5.27,4.35]
+val_redkitchen_mean_r_4=[44.94,41.06,39.29,37.50,34.99,31.12,25.69,19.60,13.60,9.19,7.78]
+val_office_mean_r_4=[52.60,48.08,45.74,43.47,38.68,31.77,24.89,18.65,13.50,9.70,6.94]
+val_pumpkin_mean_r_4=[42.59,35.44,32.82,29.32,25.19,20.95,17.03,13.66,10.97,8.95,7.75]
+val_fire_mean_r_4=[46.34,47.76,47.20,45.61,42.75,38.31,32.55,26.58,21.81,18.29,16.12]
+val_heads_mean_r_4=[28.32,26.12,25.52,24.90,24.10,23.05,21.67,19.96,17.92,15.85,14.13]
+val_stairs_mean_r_4=[27.07,22.73,20.83,19.21,17.74,16.50,15.28,14.12,13.22,12.54,11.84]
+
+val_chess_median_r_4=[23.06,22.69,22.09,20.81,18.21,14.71,11.81,8.79,5.88,4.06,3.22]
+val_redkitchen_median_r_4=[39.80,36.14,34.14,31.88,29.03,25.16,20.23,15.29,10.10,6.25,4.92]
+val_office_median_r_4=[49.47,41.18,39.61,40.63,35.24,26.60,19.95,14.09,10.08,7.14,5.13]
+val_pumpkin_median_r_4=[40.44,31.70,29.85,27.63,24.78,20.36,15.51,11.10,7.93,5.21,4.02]
+val_fire_median_r_4=[42.78,42.98,43.39,41.78,38.34,32.71,26.39,20.02,16.71,14.12,11.69]
+val_heads_median_r_4=[25.47,23.37,22.65,22.04,21.46,20.47,19.48,18.27,16.41,14.86,13.33]
+val_stairs_median_r_4=[29.09,20.78,18.35,16.94,15.95,15.09,14.43,14.02,13.60,12.93,11.76]
+
+
+###  here we have the data for the blocking with 15x15 up to a percent of the gradient points
+
+
+## how much of the images are blocked at the percent
+ ## percentages that will be done : 0 1 2 5 10 20 30 100
+block_percentages=[100,30,20,10,5,2,1,0]
+percent_chess=[100,94.0,86.3,69.5,52.3,33.4,24.2,0]
+percent_redkitchen=[100,91.7,85.3,79.9,54.7,35.5,25.2,0]
+percent_office=[100,94.2,86.5,68.2,49.5,30.1,20.7,0]
+percent_pumpkin=[100,98.4,94.8,83.3,67.0,45.2,32.8,0]
+percent_fire=[100,90.4,83.0,67.8,52.2,35.2,26.7,0]
+percent_heads=[100,97.6,93.1,78.9,60.1,37.5,25.5,0]
+percent_stairs=[100,99.2,96.5,85.5,68.7,45.6,31.1,0]
+
+### here is the actual errors
+
+## VALIDATION
+val_chess_mean_t_5=[0.80,0.80,0.78,0.68,0.54,0.34,0.26,0.13]
+val_redkitchen_mean_t_5=[1.48,1.42,1.39,1.29,1.12,0.85,0.69,0.36]
+val_office_mean_t_5=[1.19,0.95,0.86,0.75,0.61,0.44,0.36,0.22]
+val_pumpkin_mean_t_5=[0.77,0.76,0.74,0.70,0.66,0.55,0.46,0.29]
+val_fire_mean_t_5=[0.80,0.79,0.78,0.71,0.60,0.47,0.41,0.32]
+val_heads_mean_t_5=[0.47,0.47,0.47,0.45,0.41,0.34,0.29,0.19]
+val_stairs_mean_t_5=[1.08,1.08,1.04,0.90,0.73,0.56,0.50,0.39]
+
+val_chess_median_t_5=[0.81,0.82,0.80,0.70,0.54,0.30,0.20,0.08]
+val_redkitchen_median_t_5=[1.52,1.41,1.34,1.23,1.07,0.80,0.62,0.23]
+val_office_median_t_5=[1.16,0.98,0.89,0.79,0.60,0.39,0.31,0.17]
+val_pumpkin_median_t_5=[0.71,0.70,0.71,0.69,0.64,0.57,0.46,0.22]
+val_fire_median_t_5=[0.76,0.76,0.75,0.68,0.58,0.42,0.37,0.27]
+val_heads_median_t_5=[0.43,0.42,0.43,0.42,0.36,0.27,0.24,0.18]
+val_stairs_median_t_5=[1.01,1.01,0.99,0.87,0.69,0.50,0.44,0.36]
+
+val_chess_mean_r_5=[27.77,27.09,25.79,22.94,18.74,11.94,8.99,4.35]
+val_redkitchen_mean_r_5=[44.94,41.91,40.45,37.60,32.85,23.26,17.15,7.78]
+val_office_mean_r_5=[52.60,50.06,47.25,41.90,31.27,19.48,14.48,6.94]
+val_pumpkin_mean_r_5=[42.59,41.04,38.58,33.60,28.73,20.34,15.52,7.75]
+val_fire_mean_r_5=[46.34,47.98,47.59,45.14,39.32,30.35,26.01,16.12]
+val_heads_mean_r_5=[28.32,27.33,26.40,25.23,23.76,20.72,18.63,14.13]
+val_stairs_mean_r_5=[27.07,26.04,24.35,21.53,18.96,16.08,14.36,11.84]
+
+val_chess_median_r_5=[23.06,22.47,21.23,18.81,14.81,10.45,7.39,3.22]
+val_redkitchen_median_r_5=[39.80,37.54,35.91,31.15,26.05,17.72,12.73,4.92]
+val_office_median_r_5=[49.47,44.22,39.90,37.86,25.90,13.94,10.01,5.13]
+val_pumpkin_median_r_5=[40.44,37.60,33.51,28.85,25.91,20.21,14.28,4.02]
+val_fire_median_r_5=[42.78,44.03,44.16,39.29,31.39,21.16,18.68,11.69]
+val_heads_median_r_5=[25.47,24.82,23.74,22.75,21.66,19.30,17.19,13.33]
+val_stairs_median_r_5=[29.09,27.91,25.35,19.92,16.75,14.74,14.09,11.76]
+
+
+
+###  here we have the data for the blocking with 9x9 up to a percent of the gradient points
+
+
+## how much of the images are blocked at the percent
+ ## percentages that will be done : 0 1 2 5 10 20 30 50 100
+block_percentages_2=[100,50,30,20,10,5,2,1,0]
+
+percent_chess_2=[100,96.2,84.8,73.1,52.9,36.0,20.5,13.9,0]
+percent_redkitchen_2=[100,93.8,83.7,73.5,55.0,38.1,21.7,14.2,0]
+percent_office_2=[100,96.0,84.9,72.7,51.3,33.7,18.5,11.9,0]
+percent_pumpkin_2=[100,99.1,93.2,84.5,65.1,45.9,26.7,17.8,0]
+percent_fire_2=[100,93.8,82.6,72.2,53.9,38.3,23.6,16.7,0]
+percent_heads_2=[100,97.9,90.5,80.5,59.2,39.7,21.8,13.7,0]
+percent_stairs_2=[100,99.3,93.7,84.7,64.7,45.1,25.4,15.6,0]
+
+### here is the actual errors
+
+## VALIDATION
+val_chess_mean_t_6=[0.80,0.81,0.78,0.70,0.53,0.37,0.23,0.18,0.13]
+val_redkitchen_mean_t_6=[1.48,1.43,1.39,1.33,1.19,0.98,0.72,0.59,0.36]
+val_office_mean_t_6=[1.19,0.95,0.86,0.80,0.67,0.53,0.38,0.32,0.22]
+val_pumpkin_mean_t_6=[0.77,0.75,0.73,0.71,0.67,0.58,0.44,0.38,0.29]
+val_fire_mean_t_6=[0.80,0.81,0.80,0.75,0.64,0.49,0.39,0.36,0.32]
+val_heads_mean_t_6=[0.47,0.47,0.47,0.46,0.42,0.36,0.29,0.26,0.19]
+val_stairs_mean_t_6=[1.08,1.08,1.00,0.88,0.71,0.58,0.50,0.47,0.39]
+
+val_chess_median_t_6=[0.81,0.82,0.81,0.72,0.51,0.33,0.17,0.13,0.08]
+val_redkitchen_median_t_6=[1.52,1.42,1.33,1.28,1.13,0.93,0.65,0.50,0.23]
+val_office_median_t_6=[1.16,0.98,0.89,0.86,0.70,0.51,0.34,0.26,0.17]
+val_pumpkin_median_t_6=[0.71,0.70,0.71,0.69,0.66,0.57,0.43,0.34,0.22]
+val_fire_median_t_6=[0.76,0.76,0.76,0.71,0.62,0.46,0.35,0.31,0.27]
+val_heads_median_t_6=[0.43,0.42,0.43,0.42,0.36,0.29,0.23,0.22,0.18]
+val_stairs_median_t_6=[1.01,1.01,0.98,0.85,0.66,0.53,0.45,0.43,0.36]
+
+val_chess_mean_r_6=[27.77,27.76,26.48,24.49,18.92,12.73,7.69,6.16,4.35]
+val_redkitchen_mean_r_6=[44.94,42.41,40.70,39.67,35.98,28.92,18.32,13.13,7.78]
+val_office_mean_r_6=[52.60,50.56,47.39,46.37,37.23,26.62,16.46,12.41,6.94]
+val_pumpkin_mean_r_6=[42.59,40.66,36.51,34.71,29.64,21.84,14.80,11.91,7.75]
+val_fire_mean_r_6=[46.34,48.74,47.87,46.04,39.68,31.09,23.78,20.69,16.12]
+val_heads_mean_r_6=[28.32,27.34,26.03,25.78,24.38,21.85,18.67,16.84,14.13]
+val_stairs_mean_r_6=[27.07,25.56,22.63,21.14,19.24,16.92,14.30,13.26,11.84]
+
+val_chess_median_r_6=[23.06,23.21,22.30,20.72,15.35,10.85,6.26,4.80,3.22]
+val_redkitchen_median_r_6=[39.80,38.11,35.39,33.43,30.55,23.98,13.72,9.59,4.92]
+val_office_median_r_6=[49.47,45.32,41.62,44.98,30.21,19.97,12.44,9.18,5.13]
+val_pumpkin_median_r_6=[40.44,36.93,32.39,31.16,27.88,21.62,12.79,9.18,4.02]
+val_fire_median_r_6=[42.78,44.96,44.68,41.03,32.68,22.80,17.58,15.64,11.69]
+val_heads_median_r_6=[25.47,24.80,23.44,23.11,22.35,20.67,17.75,15.78,13.33]
+val_stairs_median_r_6=[29.09,27.10,21.23,18.18,16.29,15.11,14.18,13.85,11.76]
+
+
+
+###  here we have the data for the blocking with 5x5 up to a percent of the gradient points
+
+
+## how much of the images are blocked at the percent
+ ## percentages that will be done : 0 1 2 5 10 20 30 50 100
+block_percentages_3=[100,50,30,20,10,5,2,1,0]
+
+percent_chess_3=[100,86.8,67.9,53.5,33.8,20.4,10.2,6.4,0]
+percent_redkitchen_3=[100,85.0,67.8,54.2,34.7,21.0,10.3,6.1,0]
+percent_office_3=[100,86.4,67.2,52.4,32.2,19.0,9.3,5.5,0]
+percent_pumpkin_3=[100,92.6,76.4,61.8,39.9,24.4,12.2,7.4,0]
+percent_fire_3=[100,85.8,68.6,55.3,36.5,23.3,12.5,7.9,0]
+percent_heads_3=[100,90.0,72.6,57.7,36.0,21.3,10.3,6.0,0]
+percent_stairs_3=[100,92.5,75.5,60.7,38.8,23.3,11.2,6.2,0]
+
+### here is the actual errors
+
+## VALIDATION
+val_chess_mean_t_7=[0.80,0.80,0.67,0.53,0.35,0.24,0.16,0.15,0.13]
+val_redkitchen_mean_t_7=[1.48,1.41,1.34,1.24,1.04,0.81,0.58,0.48,0.36]
+val_office_mean_t_7=[1.19,0.87,0.81,0.74,0.58,0.44,0.33,0.29,0.22]
+val_pumpkin_mean_t_7=[0.77,0.73,0.72,0.69,0.59,0.47,0.37,0.34,0.29]
+val_fire_mean_t_7=[0.80,0.84,0.78,0.70,0.53,0.41,0.35,0.33,0.32]
+val_heads_mean_t_7=[0.47,0.46,0.44,0.42,0.37,0.32,0.26,0.23,0.19]
+val_stairs_mean_t_7=[1.08,0.94,0.76,0.68,0.58,0.52,0.47,0.45,0.39]
+
+val_chess_median_t_7=[0.81,0.81,0.67,0.51,0.29,0.18,0.12,0.10,0.08]
+val_redkitchen_median_t_7=[1.52,1.36,1.32,1.23,0.98,0.75,0.48,0.36,0.23]
+val_office_median_t_7=[1.16,0.90,0.86,0.75,0.58,0.41,0.28,0.24,0.17]
+val_pumpkin_median_t_7=[0.71,0.70,0.70,0.68,0.57,0.47,0.34,0.29,0.22]
+val_fire_median_t_7=[0.76,0.79,0.75,0.68,0.52,0.37,0.31,0.29,0.27]
+val_heads_median_t_7=[0.43,0.40,0.37,0.36,0.31,0.25,0.22,0.21,0.18]
+val_stairs_median_t_7=[1.01,0.91,0.74,0.63,0.52,0.48,0.44,0.42,0.36]
+
+val_chess_mean_r_7=[27.77,27.95,23.37,18.04,11.47,7.63,5.47,4.90,4.35]
+val_redkitchen_mean_r_7=[44.94,41.54,40.29,37.94,31.17,21.85,12.47,9.76,7.78]
+val_office_mean_r_7=[52.60,49.15,47.77,43.16,30.84,21.15,13.59,10.73,6.94]
+val_pumpkin_mean_r_7=[42.59,37.14,35.71,31.25,23.44,17.58,12.70,10.73,7.75]
+val_fire_mean_r_7=[46.34,47.45,43.96,39.57,30.92,24.21,19.62,18.01,16.12]
+val_heads_mean_r_7=[28.32,26.77,26.66,25.66,22.89,19.99,17.00,15.74,14.13]
+val_stairs_mean_r_7=[27.07,22.18,20.75,19.88,17.65,15.20,13.32,12.69,11.84]
+
+val_chess_median_r_7=[23.06,23.59,19.75,15.20,9.81,6.34,4.26,3.71,3.22]
+val_redkitchen_median_r_7=[39.80,35.61,35.86,34.37,27.92,17.97,9.31,6.62,4.92]
+val_office_median_r_7=[49.47,46.82,42.40,35.88,24.49,17.26,10.12,7.89,5.13]
+val_pumpkin_median_r_7=[40.44,35.62,35.65,30.44,20.90,14.70,9.43,7.15,4.02]
+val_fire_median_r_7=[42.78,43.80,39.00,34.19,24.50,17.73,15.01,13.95,11.69]
+val_heads_median_r_7=[25.47,24.36,24.07,23.86,21.95,19.01,15.59,14.65,13.33]
+val_stairs_median_r_7=[29.09,19.45,16.97,15.98,15.13,14.60,13.86,13.25,11.76]
+
+
+
+#### 3D projection overlap data
+# tests done on validation set only
+
+# 11x11 window around pixel
+## percentages 1 2 5 10 20 30 40 50 60
+## adjacent frames
+chess_overlap=[81.9,84.4,86.2,86.7,86.9,86.9,86.9,86.8,86.7]
+fire_overlap=[77.6,83.1,87.5,88.9,89.2,88.8,88.3,87.8,87.4]
+heads_overlap=[66.2,70.9,75.9,79.0,81.5,82.6,83.1,83.3,83.4]
+office_overlap=[81.7,86.6,90.2,91.5,92.0,91.9,91.7,91.2,90.6]
+pumpkin_overlap=[79.3,83.0,85.9,87.2,87.8,88.0,87.9,87.6,87.3]
+redkitchen_overlap=[75.6,80.3,84.9,87.2,88.8,89.3,89.5,89.5,89.3]
+stairs_overlap=[69.3,74.7,80.1,83.3,85.8,86.9,87.5,87.8,87.9]
+
+## percentages 1 2 5 10 20 30 40 50
+## adjacent frames
+### 7x7 window centered on pixel
+chess_overlap_2=[70.1,75.3,79.8,82.1,83.5,84.3,84.8,85.3]
+fire_overlap_2=[63.3,71.9,80.7,84.7,86.7,87.1,87.1,87.0]
+heads_overlap_2=[54.3,60.7,68.0,72.8,77.3,79.6,81.0,81.9]
+office_overlap_2=[67.7,75.6,83.0,86.3,88.4,89.2,89.6,89.7]
+pumpkin_overlap_2=[66.2,73.0,79.2,82.2,84.4,85.5,86.2,86.5]
+redkitchen_overlap_2=[61.0,68.1,76.4,81.4,85.3,87.0,87.9,88.4]
+stairs_overlap_2=[55.3,62.5,70.7,76.3,81.2,83.8,85.4,86.4]
+
+
+## posenet adjacent frames
+
+chess_overlap_2p=[62.0,67.8,73.3,76.1]
+fire_overlap_2p=[61.7,68.7,76.8]
+heads_overlap_2p=[58.2,63.6,69.1]
+office_overlap_2p=[59.6,66.5,74.8]
+pumpkin_overlap_2p=[63.7,70.8,77.3]
+redkitchen_overlap_2p=[55.1,59.5,]
+stairs_overlap_2p=[53.8,58.9]
+
+
+ 
+### overlap skipping frames
+
+## skipping 1-5 frames
+### checking 7x7 window centered on pixel
+## percentages 1 2 5 10 20 30 40 50
+
+# skip 1 frame
+chess_overlap_3=[63.5,69.2,74.5,77.6,80.0,81.4,82.4,83.2]
+fire_overlap_3=[55.3,65.2,76.1,81.3,84.1,85.0,85.4,85.5]
+heads_overlap_3=[45.3,52.6,61.4,67.5,73.4,76.6,78.7,80.2]
+office_overlap_3=[61.4,69.9,78.0,82.1,84.9,86.3,87.2,87.7]
+pumpkin_overlap_3=[61.1,68.3,75.2,78.8,81.6,83.2,84.2,84.9]
+redkitchen_overlap_3=[55.0,62.8,72.0,77.8,82.7,85.0,86.4,87.1]
+stairs_overlap_3=[47.7,55.6,65.2,71.9,78.1,81.4,83.6,85.0]
+
+
+## posenet
+chess_overlap_3p=[]
+fire_overlap_3p=[]
+heads_overlap_3p=[]
+office_overlap_3p=[]
+pumpkin_overlap_3p=[]
+redkitchen_overlap_3p=[]
+stairs_overlap_3p=[]
+
+
+
+
+## skip 2 frames
+chess_overlap_4=[57.4,63.5,69.7,73.6,77.0,79.0,80.4,81.4]
+fire_overlap_4=[51.5,61.7,73.1,78.8,82.1,83.3,84.0,84.2]
+heads_overlap_4=[40.1,47.8,57.3,64.1,70.8,74.6,77.0,78.7]
+office_overlap_4=[57.3,65.8,74.3,78.8,82.2,84.0,85.2,86.0]
+pumpkin_overlap_4=[57.8,65.2,72.5,76.4,79.7,81.5,82.8,83.6]
+redkitchen_overlap_4=[51.8,59.7,69.2,75.5,80.9,83.6,85.2,86.1]
+stairs_overlap_4=[42.7,51.0,61.6,69.1,76.1,79.8,82.3,83.9]
+
+
+chess_overlap_4p=[]
+fire_overlap_4p=[]
+heads_overlap_4p=[]
+office_overlap_4p=[]
+pumpkin_overlap_4p=[]
+redkitchen_overlap_4p=[]
+stairs_overlap_4p=[]
+
+
+
+## skip 3 frames
+chess_overlap_5=[51.9,58.2,65.2,69.9,74.2,76.7,78.4,79.7]
+fire_overlap_5=[48.1,58.6,70.4,76.6,80.3,81.9,82.7,83.1]
+heads_overlap_5=[36.3,44.1,54.0,61.3,68.7,72.9,75.6,77.4]
+office_overlap_5=[53.4,62.0,70.8,75.8,79.8,81.9,83.4,84.3]
+pumpkin_overlap_5=[55.1,62.6,70.3,74.5,78.0,80.1,81.5,82.4]
+redkitchen_overlap_5=[49.1,57.0,66.8,73.4,79.4,82.4,84.1,85.1]
+stairs_overlap_5=[39.1,47.6,58.7,66.7,74.4,78.4,81.0,82.8]
+
+
+chess_overlap_5p=[]
+fire_overlap_5p=[]
+heads_overlap_5p=[]
+office_overlap_5p=[]
+pumpkin_overlap_5p=[]
+redkitchen_overlap_5p=[]
+stairs_overlap_5p=[]
+
+
+
+
+## skip 4  frames
+chess_overlap_6=[47.0,53.4,60.9,66.3,71.4,74.4,76.6,78.1]
+fire_overlap_6=[45.1,55.7,68.0,74.4,78.6,80.4,81.4,81.9]
+heads_overlap_6=[32.7,40.6,51.0,58.8,66.8,71.3,74.2,76.2]
+office_overlap_6=[49.8,58.4,67.6,72.9,77.4,79.9,81.6,82.7]
+pumpkin_overlap_6=[52.6,60.3,68.2,72.6,76.5,78.7,80.3,81.2]
+redkitchen_overlap_6=[46.7,54.6,64.7,71.7,78.0,81.2,83.1,84.2]
+stairs_overlap_6=[36.2,44.8,56.3,64.8,72.9,77.1,79.9,81.8]
+
+
+chess_overlap_6p=[]
+fire_overlap_6p=[]
+heads_overlap_6p=[]
+office_overlap_6p=[]
+pumpkin_overlap_6p=[]
+redkitchen_overlap_6p=[]
+stairs_overlap_6p=[]
+
+
+
+
+## skip 5 frames
+chess_overlap_7=[42.5,49.0,57.0,63.0,68.9,72.4,74.8,76.6]
+fire_overlap_7=[42.4,53.0,65.5,72.3,76.9,79.0,80.1,80.8]
+heads_overlap_7=[29.3,37.3,48.1,56.5,64.9,69.7,72.8,74.9]
+office_overlap_7=[46.4,55.0,64.5,70.2,75.1,77.9,79.8,81.1]
+pumpkin_overlap_7=[50.4,58.1,66.2,71.0,75.1,77.5,79.1,80.1]
+redkitchen_overlap_7=[44.4,52.4,62.6,69.9,76.6,80.0,82.0,83.2]
+stairs_overlap_7=[34.1,42.6,54.3,63.0,71.4,75.9,78.8,80.8]
+
+
+chess_overlap_7p=[]
+fire_overlap_7p=[]
+heads_overlap_7p=[]
+office_overlap_7p=[]
+pumpkin_overlap_7p=[]
+redkitchen_overlap_7p=[]
+stairs_overlap_7p=[]
+
+
+
+
+
+
+##### PLOTTING
+'''
+# masked most large gradient points 
+plt.figure(1)
+plt.suptitle('Pumpkin val, image mean vs dataset mean')
+plt.subplot(121)
+plt.plot(percentages,pumpkin_immean_t,'r--',label='mean, image mean')
+plt.plot(percentages,pumpkin_immedian_t,'bo',label='median, image mean')
+plt.plot(percentages,val_pumpkin_mean_t_2,'k--',label='mean, dataset mean')
+plt.plot(percentages,val_pumpkin_median_t_2,'g^',label='median, dataset mean')
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.grid(True)
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,pumpkin_immean_r,'r--',label='mean, image mean')
+plt.plot(percentages,pumpkin_immedian_r,'bo',label='median, image mean')
+plt.plot(percentages,val_pumpkin_mean_r_2,'k--',label='mean, dataset mean')
+plt.plot(percentages,val_pumpkin_median_r_2,'g^',label='median, dataset mean')
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+plt.figure(2)
+plt.suptitle('Heads val, image mean vs. dataset mean')
+plt.subplot(121)
+plt.plot(percentages,heads_immean_t,'r--',label='mean, image mean')
+plt.plot(percentages,heads_immedian_t,'bo',label='median, image mean')
+plt.plot(percentages,val_heads_mean_t_2,'k--',label='mean, dataset mean')
+plt.plot(percentages,val_heads_median_t_2,'g^',label='median,dataset mean')
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.grid(True)
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,heads_immean_r,'r--',label='mean, image mean')
+plt.plot(percentages,heads_immedian_r,'bo',label='median, image mean')
+plt.plot(percentages,val_heads_mean_r_2,'k--',label='mean, dataset mean')
+plt.plot(percentages,val_heads_median_r_2,'g^',label='median, dataset mean')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+sys.exit(-1)
+'''
+### overlap between frames plots
+overlap_percentage=[1, 2, 5, 10, 20, 30, 40, 50, 60]
+overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
+
+
+plt.figure(1)
+plt.plot(overlap_percentage_2, chess_overlap_2,'r--',label='chess')
+plt.plot(overlap_percentage_2, fire_overlap_2,'k--',label='fire')
+plt.plot(overlap_percentage_2, heads_overlap_2,'g--',label='heads')
+plt.plot(overlap_percentage_2, office_overlap_2,'b--',label='office')
+plt.plot(overlap_percentage_2, pumpkin_overlap_2,'o--',label='pumpkin')
+plt.plot(overlap_percentage_2, redkitchen_overlap_2,'^--',label='redkitchen')
+plt.plot(overlap_percentage_2, stairs_overlap_2,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+## overlap with 1 frames skipped
+overlap_percentage_3=[1, 2, 5, 10, 20, 30, 40]
+#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
+
+
+plt.figure(1)
+plt.plot(overlap_percentage_3, chess_overlap_3,'r--',label='chess')
+plt.plot(overlap_percentage_3, fire_overlap_3,'k--',label='fire')
+plt.plot(overlap_percentage_3, heads_overlap_3,'g--',label='heads')
+plt.plot(overlap_percentage_3, office_overlap_3,'b--',label='office')
+plt.plot(overlap_percentage_3, pumpkin_overlap_3,'o--',label='pumpkin')
+plt.plot(overlap_percentage_3, redkitchen_overlap_3,'^--',label='redkitchen')
+plt.plot(overlap_percentage_3, stairs_overlap_3,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 1 frame skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+## overlap with 2 frames skipped
+overlap_percentage_4=[1, 2, 5, 10, 20, 30, 40]
+#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
+
+
+plt.figure(1)
+plt.plot(overlap_percentage_4, chess_overlap_4,'r--',label='chess')
+plt.plot(overlap_percentage_4, fire_overlap_4,'k--',label='fire')
+plt.plot(overlap_percentage_4, heads_overlap_4,'g--',label='heads')
+plt.plot(overlap_percentage_4, office_overlap_4,'b--',label='office')
+plt.plot(overlap_percentage_4, pumpkin_overlap_4,'o--',label='pumpkin')
+plt.plot(overlap_percentage_4, redkitchen_overlap_4,'^--',label='redkitchen')
+plt.plot(overlap_percentage_4, stairs_overlap_4,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 2 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+## overlap with 3 frames skipped
+overlap_percentage_5=[1, 2, 5, 10, 20, 30, 40]
+#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
+
+
+plt.figure(1)
+plt.plot(overlap_percentage_5, chess_overlap_5,'r--',label='chess')
+plt.plot(overlap_percentage_5, fire_overlap_5,'k--',label='fire')
+plt.plot(overlap_percentage_5, heads_overlap_5,'g--',label='heads')
+plt.plot(overlap_percentage_5, office_overlap_5,'b--',label='office')
+plt.plot(overlap_percentage_5, pumpkin_overlap_5,'o--',label='pumpkin')
+plt.plot(overlap_percentage_5, redkitchen_overlap_5,'^--',label='redkitchen')
+plt.plot(overlap_percentage_5, stairs_overlap_5,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 3 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+## overlap with 4 frames skipped
+overlap_percentage_6=[1, 2, 5, 10, 20, 30, 40]
+#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
+
+
+plt.figure(1)
+plt.plot(overlap_percentage_6, chess_overlap_6,'r--',label='chess')
+plt.plot(overlap_percentage_6, fire_overlap_6,'k--',label='fire')
+plt.plot(overlap_percentage_6, heads_overlap_6,'g--',label='heads')
+plt.plot(overlap_percentage_6, office_overlap_6,'b--',label='office')
+plt.plot(overlap_percentage_6, pumpkin_overlap_6,'o--',label='pumpkin')
+plt.plot(overlap_percentage_6, redkitchen_overlap_6,'^--',label='redkitchen')
+plt.plot(overlap_percentage_6, stairs_overlap_6,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 4 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+sys.exit(-1)
+
+
+
+
+
+
+#### block masking plots
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(block_percentages, val_chess_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_chess_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_chess_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_chess_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_chess_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_chess_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,0.90])
+plt.title('Chess val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_chess_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_chess_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_chess_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_chess_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_chess_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_chess_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,35])
+plt.title('Chess val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+
+
+plt.figure(2)
+plt.subplot(121)
+plt.plot(block_percentages, val_redkitchen_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_redkitchen_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_redkitchen_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_redkitchen_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_redkitchen_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_redkitchen_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,1.55])
+plt.title('Redkitchen val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_redkitchen_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_redkitchen_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_redkitchen_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_redkitchen_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_redkitchen_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_redkitchen_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,55])
+plt.title('Redkitchen val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(3)
+plt.subplot(121)
+plt.plot(block_percentages, val_office_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_office_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_office_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_office_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_office_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_office_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,1.30])
+plt.title('Office val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_office_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_office_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_office_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_office_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_office_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_office_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,55])
+plt.title('Office val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(block_percentages, val_pumpkin_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_pumpkin_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_pumpkin_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_pumpkin_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_pumpkin_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_pumpkin_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,0.90])
+plt.title('Pumpkin val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_pumpkin_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_pumpkin_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_pumpkin_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_pumpkin_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_pumpkin_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_pumpkin_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,45])
+plt.title('Pumpkin val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(block_percentages, val_fire_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_fire_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_fire_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_fire_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_fire_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_fire_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,0.90])
+plt.title('Fire val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_fire_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_fire_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_fire_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_fire_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_fire_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_fire_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,55])
+plt.title('Fire val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(block_percentages, val_heads_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_heads_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_heads_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_heads_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_heads_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_heads_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,0.60])
+plt.title('Heads val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_heads_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_heads_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_heads_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_heads_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_heads_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_heads_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,35])
+plt.title('Heads val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(block_percentages, val_stairs_mean_t_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages, val_stairs_median_t_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2, val_stairs_mean_t_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2, val_stairs_median_t_6,'g^',label='median,9x9')
+plt.plot(block_percentages_3, val_stairs_mean_t_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_stairs_median_t_7,'ms',label='median,5x5')
+plt.axis([0,110,0,1.30])
+plt.title('Stairs val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(block_percentages,val_stairs_mean_r_5,'r--',label='mean, 15x15')
+plt.plot(block_percentages,val_stairs_median_r_5,'bo',label='median, 15x15')
+plt.plot(block_percentages_2,val_stairs_mean_r_6,'k--',label='mean, 9x9')
+plt.plot(block_percentages_2,val_stairs_median_r_6,'g^',label='median, 9x9')
+plt.plot(block_percentages_3, val_stairs_mean_r_7,'y--',label='mean, 5x5')
+plt.plot(block_percentages_3, val_stairs_median_r_7,'ms',label='median,5x5')
+plt.axis([0,110,0,35])
+plt.title('Stairs val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+
+
+plt.figure(1)
+plt.plot(block_percentages, percent_chess,'r--',label='chess')
+plt.plot(block_percentages, percent_redkitchen,'bo--',label='redkitchen')
+plt.plot(block_percentages, percent_office,'k--',label='office')
+plt.plot(block_percentages, percent_pumpkin ,'g^',label='pumpkin')
+plt.plot(block_percentages, percent_fire,'y--',label='fire')
+plt.plot(block_percentages, percent_heads,'ms',label='heads')
+plt.plot(block_percentages, percent_stairs,'ro--',label='stairs')
+plt.axis([0,110,0,110])
+plt.title('15x15 block masking')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Percentage of image masked')
+plt.legend()
+plt.show()
+
+
+
+plt.figure(1)
+plt.plot(block_percentages_2, percent_chess_2,'r--',label='chess')
+plt.plot(block_percentages_2, percent_redkitchen_2,'bo--',label='redkitchen')
+plt.plot(block_percentages_2, percent_office_2,'k--',label='office')
+plt.plot(block_percentages_2, percent_pumpkin_2 ,'g^',label='pumpkin')
+plt.plot(block_percentages_2, percent_fire_2,'y--',label='fire')
+plt.plot(block_percentages_2, percent_heads_2,'ms',label='heads')
+plt.plot(block_percentages_2, percent_stairs_2,'ro--',label='stairs')
+plt.axis([0,110,0,110])
+plt.title('9x9 block masking')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Percentage of image masked')
+plt.legend()
+plt.show()
+
+
+
+plt.figure(1)
+plt.plot(block_percentages_3, percent_chess_3,'r--',label='chess')
+plt.plot(block_percentages_3, percent_redkitchen_3,'bo--',label='redkitchen')
+plt.plot(block_percentages_3, percent_office_3,'k--',label='office')
+plt.plot(block_percentages_3, percent_pumpkin_3 ,'g^',label='pumpkin')
+plt.plot(block_percentages_3, percent_fire_3,'y--',label='fire')
+plt.plot(block_percentages_3, percent_heads_3,'ms',label='heads')
+plt.plot(block_percentages_3, percent_stairs_3,'ro--',label='stairs')
+plt.axis([0,110,0,110])
+plt.title('5x5 block masking')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points masked')
+plt.ylabel('Percentage of image masked')
+plt.legend()
+plt.show()
+
+
+sys.exit(-1)
+
+'''
+### plotting the block masking
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(percentages, val_chess_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages, val_chess_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages, val_chess_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages, val_chess_median_t_2,'g^',label='median,most')
+plt.plot(percentages, val_chess_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_chess_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.90])
+plt.title('Chess val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_chess_mean_r_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_chess_median_r_4,'bo',label='median, block masked')
+plt.plot(percentages,val_chess_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_chess_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_chess_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_chess_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,35])
+plt.title('Chess val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(2)
+plt.subplot(121)
+plt.plot(percentages,val_fire_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_fire_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages,val_fire_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_fire_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_fire_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_fire_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.95])
+plt.title('Fire val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_fire_mean_r_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_fire_median_r_4,'bo',label='median, block masked')
+plt.plot(percentages,val_fire_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_fire_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_fire_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_fire_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,50])
+plt.title('Fire val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(3)
+plt.subplot(121)
+plt.plot(percentages,val_heads_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_heads_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages,val_heads_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_heads_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_heads_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_heads_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.55])
+plt.title('Heads val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_heads_mean_r_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_heads_median_r_4,'bo',label='median, block masked')
+plt.plot(percentages,val_heads_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_heads_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_heads_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_heads_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,35])
+plt.title('Heads val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(4)
+plt.subplot(121)
+plt.plot(percentages,val_stairs_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_stairs_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages,val_stairs_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_stairs_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_stairs_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_stairs_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,1.25])
+plt.title('Stairs val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_stairs_mean_r_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_stairs_median_r_4,'bo',label='median, block masked')
+plt.plot(percentages,val_stairs_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_stairs_median_r_2,'g^',label='median, most')
+plt.plot(percentages,val_stairs_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages,val_stairs_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,40])
+plt.title('Stairs val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(5)
+plt.subplot(121)
+plt.plot(percentages,val_redkitchen_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_redkitchen_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages,val_redkitchen_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_redkitchen_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_redkitchen_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_redkitchen_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,1.75])
+plt.title('Redkitchen val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_redkitchen_mean_r_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_redkitchen_median_r_4,'bo',label='median, block masked')
+plt.plot(percentages,val_redkitchen_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_redkitchen_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_redkitchen_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_redkitchen_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,60])
+plt.title('Redkitchen val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(6)
+plt.subplot(121)
+plt.plot(percentages,val_office_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_office_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages,val_office_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_office_median_t_2,'g^',label='median, most')
+plt.plot(percentages,val_office_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages,val_office_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,1.20])
+plt.title('Office val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_office_mean_r_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_office_median_r_4,'bo',label='median, block masked')
+plt.plot(percentages,val_office_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_office_median_r_2,'g^',label='median, most')
+plt.plot(percentages,val_office_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages,val_office_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,60])
+plt.title('Office val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(7)
+plt.subplot(121)
+plt.plot(percentages,val_pumpkin_mean_t_4,'r--',label='mean, block masked')
+plt.plot(percentages,val_pumpkin_median_t_4,'bo',label='median, block masked')
+plt.plot(percentages,val_pumpkin_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_pumpkin_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_pumpkin_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_pumpkin_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.80])
+plt.title('Pumpkin val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_pumpkin_mean_r,'r--',label='mean, block masked')
+plt.plot(percentages,val_pumpkin_median_r,'bo',label='median, block masked')
+plt.plot(percentages,val_pumpkin_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_pumpkin_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_pumpkin_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_pumpkin_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,65])
+plt.title('Pumpkin val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+sys.exit(-1)
+'''
+
+
+### plotting the pixelwise masking
+
+plt.figure(1)
+plt.subplot(121)
+plt.plot(percentages, val_chess_mean_t,'r--',label='mean, least')
+plt.plot(percentages, val_chess_median_t,'bo',label='median, least')
+plt.plot(percentages, val_chess_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages, val_chess_median_t_2,'g^',label='median,most')
+plt.plot(percentages, val_chess_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_chess_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.90])
+plt.title('Chess val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_chess_mean_r,'r--',label='mean, least')
+plt.plot(percentages,val_chess_median_r,'bo',label='median, least')
+plt.plot(percentages,val_chess_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_chess_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_chess_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_chess_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,35])
+plt.title('Chess val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(2)
+plt.subplot(121)
+plt.plot(percentages,val_fire_mean_t,'r--',label='mean, least')
+plt.plot(percentages,val_fire_median_t,'bo',label='median, least')
+plt.plot(percentages,val_fire_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_fire_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_fire_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_fire_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.95])
+plt.title('Fire val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_fire_mean_r,'r--',label='mean, least')
+plt.plot(percentages,val_fire_median_r,'bo',label='median, least')
+plt.plot(percentages,val_fire_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_fire_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_fire_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_fire_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,50])
+plt.title('Fire val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(3)
+plt.subplot(121)
+plt.plot(percentages,val_heads_mean_t,'r--',label='mean, least')
+plt.plot(percentages,val_heads_median_t,'bo',label='median, least')
+plt.plot(percentages,val_heads_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_heads_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_heads_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_heads_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.55])
+plt.title('Heads val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_heads_mean_r,'r--',label='mean, least')
+plt.plot(percentages,val_heads_median_r,'bo',label='median, least')
+plt.plot(percentages,val_heads_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_heads_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_heads_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_heads_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,35])
+plt.title('Heads val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(4)
+plt.subplot(121)
+plt.plot(percentages,val_stairs_mean_t,'r--',label='mean, least')
+plt.plot(percentages,val_stairs_median_t,'bo',label='median, least')
+plt.plot(percentages,val_stairs_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_stairs_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_stairs_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_stairs_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,1.25])
+plt.title('Stairs val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_stairs_mean_r,'r--',label='mean, least')
+plt.plot(percentages,val_stairs_median_r,'bo',label='median, least')
+plt.plot(percentages,val_stairs_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_stairs_median_r_2,'g^',label='median, most')
+plt.plot(percentages,val_stairs_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages,val_stairs_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,40])
+plt.title('Stairs val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(5)
+plt.subplot(121)
+plt.plot(percentages,val_redkitchen_mean_t,'r--',label='mean, least')
+plt.plot(percentages,val_redkitchen_median_t,'bo',label='median, least')
+plt.plot(percentages,val_redkitchen_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_redkitchen_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_redkitchen_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_redkitchen_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,1.75])
+plt.title('Redkitchen val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_redkitchen_mean_r,'r--',label='mean, least')
+plt.plot(percentages,val_redkitchen_median_r,'bo',label='median, least')
+plt.plot(percentages,val_redkitchen_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_redkitchen_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_redkitchen_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_redkitchen_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,60])
+plt.title('Redkitchen val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(6)
+plt.subplot(121)
+plt.plot(percentages,office_mean_t,'r--',label='mean, least')
+plt.plot(percentages,office_median_t,'bo',label='median, least')
+plt.plot(percentages,office_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,office_median_t_2,'g^',label='median, most')
+plt.plot(percentages, office_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, office_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,1.20])
+plt.title('Office train, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,office_mean_r,'r--',label='mean, least')
+plt.plot(percentages,office_median_r,'bo',label='median, least')
+plt.plot(percentages,office_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,office_median_r_2,'g^',label='median, most')
+plt.plot(percentages, office_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, office_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,60])
+plt.title('Office train, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+plt.figure(7)
+plt.subplot(121)
+plt.plot(percentages,val_pumpkin_mean_t,'r--',label='mean, least')
+plt.plot(percentages,val_pumpkin_median_t,'bo',label='median, least')
+plt.plot(percentages,val_pumpkin_mean_t_2,'k--',label='mean, most')
+plt.plot(percentages,val_pumpkin_median_t_2,'g^',label='median, most')
+plt.plot(percentages, val_pumpkin_mean_t_3,'y--',label='mean, random')
+plt.plot(percentages, val_pumpkin_median_t_3,'ms',label='median,random')
+plt.axis([0,100,0,0.80])
+plt.title('Pumpkin val, translation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(m)')
+plt.legend()
+plt.subplot(122)
+plt.plot(percentages,val_pumpkin_mean_r,'r--',label='mean, least')
+plt.plot(percentages,val_pumpkin_median_r,'bo',label='median, least')
+plt.plot(percentages,val_pumpkin_mean_r_2,'k--',label='mean, most')
+plt.plot(percentages,val_pumpkin_median_r_2,'g^',label='median, most')
+plt.plot(percentages, val_pumpkin_mean_r_3,'y--',label='mean, random')
+plt.plot(percentages, val_pumpkin_median_r_3,'ms',label='median,random')
+plt.axis([0,100,0,65])
+plt.title('Pumpkin val, rotation errors')
+plt.grid(True)
+plt.xlabel('Percentage of image masked')
+plt.ylabel('Error,(degrees)')
+plt.legend()
+plt.show()
+
+#imgmean_chess
+
+#datamean_val_chess_t
+
