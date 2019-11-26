@@ -99,7 +99,7 @@ if CUDA:
   torch.cuda.manual_seed(seed)
   model.cuda()
 
-'''
+
 print 'Calculating mean colour of dataset'
 S=[0,0,0]
 for idx, (data, target) in enumerate(loader):
@@ -119,7 +119,7 @@ for idx, (data, target) in enumerate(loader):
 print S/idx
 MEAN=np.around(S/idx)
 ## TODO: this RGB mean part takes 24s currently which frankly is disgustingly slow. Make it faster!
-'''
+
 ## get the sequences that are used
 
 if train:
@@ -320,7 +320,7 @@ for batch_idx, (data, target) in enumerate(loader):
         elif batch_idx<2000 and batch_idx>=1500:
             out_filename = osp.join(seq_dir[3], 'frame-{:06d}.color.png'. format(batch_idx-1500))
     
-  MEAN= np.mean(np.mean(img,axis=0),axis=0)
+ # MEAN= np.mean(np.mean(img,axis=0),axis=0)
   
 
   #out_filename = osp.join(args.output_dir, 'frame-{:06d}.color.png'. format(batch_idx))
