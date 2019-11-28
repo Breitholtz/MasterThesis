@@ -34,3 +34,33 @@ Error in rotation:
 Error in rotation:
  median 20.93 degrees
  mean 24.78 degree 
+60% : Error in translation:
+ median 0.84 m
+  mean 0.91 m
+Error in rotation:
+ median 17.12 degrees
+ mean 20.95 degree 
+70% : Error in translation:
+ median 0.69 m
+  mean 0.79 m
+Error in rotation:
+ median 13.77 degrees
+ mean 17.22 degree 
+80% : Error in translation:
+ median 0.54 m
+  mean 0.64 m
+Error in rotation:
+ median 10.25 degrees
+ mean 13.41 degree 
+90% : Error in translation:
+ median 0.38 m
+  mean 0.49 m
+Error in rotation:
+ median 7.13 degrees
+ mean 10.35 degree 
+100% : Error in translation:
+ median 0.25 m
+  mean 0.38 m
+Error in rotation:
+ median 5.27 degrees
+ mean 9.04 degree 
