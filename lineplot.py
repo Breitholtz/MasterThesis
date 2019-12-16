@@ -489,15 +489,34 @@ redkitchen_overlap_2=[61.0,68.1,76.4,81.4,85.3,87.0,87.9,88.4]
 stairs_overlap_2=[55.3,62.5,70.7,76.3,81.2,83.8,85.4,86.4]
 
 
+# depth overlap
+chess_imoverlap_2=[93.3,92.4,91.0,89.8,88.5,87.7,87.1,86.6]
+fire_imoverlap_2=[93.6,93.3,92.7,91.9,90.7,89.8,88.9,88.2]
+heads_imoverlap_2=[82.3,83.0,83.8,84.3,84.6,84.5,84.3,84.1]
+office_imoverlap_2=[95.7,95.5,95.1,94.5,93.4,92.4,91.5,90.6]
+pumpkin_imoverlap_2=[91.0,91.0,90.6,90.1,89.2,88.4,87.8,87.3]
+redkitchen_imoverlap_2=[90.8,90.8,90.7,90.6,90.4,90.1,89.8,89.5]
+stairs_imoverlap_2=[86.4,87.4,88.1,88.4,88.4,88.4,88.3,88.1]
+
+
 ## posenet adjacent frames
 
-chess_overlap_2p=[62.0,67.8,73.3,76.1]
-fire_overlap_2p=[61.7,68.7,76.8]
-heads_overlap_2p=[58.2,63.6,69.1]
-office_overlap_2p=[59.6,66.5,74.8]
-pumpkin_overlap_2p=[63.7,70.8,77.3]
-redkitchen_overlap_2p=[55.1,59.5,]
-stairs_overlap_2p=[53.8,58.9]
+chess_overlap_2p=[62.0,67.8,73.3,76.1,78.5,80.2,81.6,82.9]
+fire_overlap_2p=[61.7,68.7,76.8,81.5,84.6,85.8,86.3,86.6]
+heads_overlap_2p=[58.2,63.6,69.1,72.7,76.1,78.0,79.2,80.1]
+office_overlap_2p=[59.6,66.5,74.8,79.7,83.2,84.7,85.3,85.8]
+pumpkin_overlap_2p=[63.7,70.8,77.3,80.5,82.7,84.0,84.9,85.4]
+redkitchen_overlap_2p=[55.1,59.5,66.5,72.7,78.6,81.6,83.2,84.4]
+stairs_overlap_2p=[53.8,58.9,67.4,73.8,79.9,83.0,84.9,86.0]
+
+# depth overlap
+chess_imoverlap_2p=[87.8,87.4,86.7,85.9,85.2,84.9,84.7,84.6]
+fire_imoverlap_2p=[93.3,93.1,92.7,92.2,91.4,90.5,89.7,88.9]
+heads_imoverlap_2p=[84.2,84.0,83.5,83.1,82.6,82.3,82.1,82.0]
+office_imoverlap_2p=[92.3,92.4,92.1,91.5,90.5,89.6,88.7,87.9]
+pumpkin_imoverlap_2p=[88.7,88.8,88.8,88.5,87.8,87.2,86.8,86.4]
+redkitchen_imoverlap_2p=[75.9,77.5,80.9,83.7,85.7,86.5,86.8,86.8]
+stairs_imoverlap_2p=[82.4,85.0,87.2,88.0,88.2,88.0,87.8]
 
 
  
@@ -517,15 +536,35 @@ redkitchen_overlap_3=[55.0,62.8,72.0,77.8,82.7,85.0,86.4,87.1]
 stairs_overlap_3=[47.7,55.6,65.2,71.9,78.1,81.4,83.6,85.0]
 
 
-## posenet
-chess_overlap_3p=[]
-fire_overlap_3p=[]
-heads_overlap_3p=[]
-office_overlap_3p=[]
-pumpkin_overlap_3p=[]
-redkitchen_overlap_3p=[]
-stairs_overlap_3p=[]
+# depth overlap
+chess_imoverlap_3=[87.8,86.9,85.4,84.1,82.8,82.0,81.4,81.0]
+fire_imoverlap_3=[91.5,91.3,90.8,90.1,88.9,88.0,87.2,86.5]
+heads_imoverlap_3=[79.7,80.6,81.5,82.0,82.1,81.9,81.7,81.3]
+office_imoverlap_3=[86.1,86.0,85.7,85.3,84.5,83.7,82.9,82.0]
+pumpkin_imoverlap_3=[84.6,84.7,84.8,84.5,83.9,83.4,83.0,82.5]
+redkitchen_imoverlap_3=[87.0,86.9,86.8,86.7,86.3,85.9,85.6,85.1]
+stairs_imoverlap_3=[83.7,84.8,85.7,86.0,86.2,86.1,86.1,85.9]
 
+
+## posenet
+chess_overlap_3p=[53.8,60.4,67.1,71.0,74.4,76.8,78.9,80.6]
+fire_overlap_3p=[53.1,61.0,70.8,76.9,81.2,83.1,84.0,84.7]
+heads_overlap_3p=[47.9,54.8,62.1,67.0,71.9,74.7,76.6,78.0]
+office_overlap_3p=[50.7,58.3,68.0,74.2,79.2,81.5,82.7,83.6]
+pumpkin_overlap_3p=[56.2,63.9,71.6,75.6,79.0,81.0,82.5,83.5]
+redkitchen_overlap_3p=[48.3,53.2,60.7,67.7,74.7,78.5,80.7,82.4]
+stairs_overlap_3p=[44.7,50.2,60.5,68.5,76.3,80.5,83.0,84.5]
+
+
+
+# depth overlap
+chess_imoverlap_3p=[81.0,80.7,80.2,79.6,79.1,78.9,78.8,78.8]
+fire_imoverlap_3p=[91.0,90.8,90.4,90.0,89.2,88.4,87.5,86.8]
+heads_imoverlap_3p=[82.0,82.0,81.8,81.5,81.1,80.9,80.8,80.7]
+office_imoverlap_3p=[82.9,83.4,83.6,83.3,82.5,81.7,80.8,80.0]
+pumpkin_imoverlap_3p=[82.0,82.4,82.7,82.6,82.3,82.0,81.8,81.5]
+redkitchen_imoverlap_3p=[70.4,72.2,76.0,79.0,81.1,81.9,82.0,81.9]
+stairs_imoverlap_3p=[77.2,81.0,84.1,85.3,85.8,85.8,85.7,85.6]
 
 
 
@@ -539,13 +578,34 @@ redkitchen_overlap_4=[51.8,59.7,69.2,75.5,80.9,83.6,85.2,86.1]
 stairs_overlap_4=[42.7,51.0,61.6,69.1,76.1,79.8,82.3,83.9]
 
 
-chess_overlap_4p=[]
-fire_overlap_4p=[]
-heads_overlap_4p=[]
-office_overlap_4p=[]
-pumpkin_overlap_4p=[]
-redkitchen_overlap_4p=[]
-stairs_overlap_4p=[]
+# depth overlap
+chess_imoverlap_4=[79.4,78.6,77.3,76.3,75.2,74.6,74.2,73.8]
+fire_imoverlap_4=[87.2,87.1,86.8,86.3,85.3,84.5,83.7,83.1]
+heads_imoverlap_4=[79.7,80.6,81.5,82.0,82.1,81.9,81.7,81.3]
+office_imoverlap_4=[74.8,74.8,74.8,74.7,74.2,73.6,73.0,72.4]
+pumpkin_imoverlap_4=[75.9,76.3,76.7,76.8,76.6,76.3,76.0,75.7]
+redkitchen_imoverlap_4=[81.8,81.7,81.5,81.3,80.8,80.3,79.8,79.3]
+stairs_imoverlap_4=[79.3,80.4,81.3,81.7,81.8,81.8,81.8,81.7]
+
+
+# posenet
+chess_overlap_4p=[48.5,55.5,63.0,67.5,71.7,74.5,76.9,78.9]
+fire_overlap_4p=[49.5,57.7,67.8,74.3,79.1,81.3,82.4,83.2]
+heads_overlap_4p=[41.6,49.0,57.2,63.0,69.0,72.4,74.7,76.4]
+office_overlap_4p=[45.3,53.3,63.8,70.8,76.6,79.3,80.8,81.9]
+pumpkin_overlap_4p=[52.3,60.2,68.4,72.7,76.5,78.9,80.7,81.9]
+redkitchen_overlap_4p=[44.0,49.3,57.2,64.6,72.3,76.6,79.1,81.0]
+stairs_overlap_4p=[38.8,44.5,55.7,64.9,74.0,78.7,81.6,83.3]
+
+
+# depth overlap
+chess_imoverlap_4p=[71.7,71.7,71.6,71.5,71.5,71.6,71.6,71.6]
+fire_imoverlap_4p=[86.1,86.1,85.8,85.6,85.0,84.3,83.5,82.9]
+heads_imoverlap_4p=[79.2,79.3,79.3,79.1,78.8,78.7,78.6,78.6]
+office_imoverlap_4p=[72.5,73.2,79.3,73.9,73.3,72.6,71.8,71.0]
+pumpkin_imoverlap_4p=[72.7,73.3,74.0,74.4,74.5,74.5,74.5,74.4]
+redkitchen_imoverlap_4p=[63.7,65.6,69.6,72.8,75.1,75.9,75.9,75.7]
+stairs_imoverlap_4p=[71.5,75.9,79.7,81.1,81.6,81.7,81.6,81.4]
 
 
 
@@ -559,14 +619,34 @@ redkitchen_overlap_5=[49.1,57.0,66.8,73.4,79.4,82.4,84.1,85.1]
 stairs_overlap_5=[39.1,47.6,58.7,66.7,74.4,78.4,81.0,82.8]
 
 
-chess_overlap_5p=[]
-fire_overlap_5p=[]
-heads_overlap_5p=[]
-office_overlap_5p=[]
-pumpkin_overlap_5p=[]
-redkitchen_overlap_5p=[]
-stairs_overlap_5p=[]
+# depth overlap
+chess_imoverlap_5=[71.3,70.6,69.6,68.8,68.1,67.7,67.3,67.0]
+fire_imoverlap_5=[81.7,81.8,81.7,81.4,80.7,80.0,79.4,78.8]
+heads_imoverlap_5=[77.6,78.5,79.4,79.8,79.7,79.4,79.1,78.7]
+office_imoverlap_5=[64.7,64.8,65.0,65.2,65.0,64.7,64.4,63.9]
+pumpkin_imoverlap_5=[67.6,68.0,68.7,69.0,69.0,69.0,68.8,68.6]
+redkitchen_imoverlap_5=[76.8,76.6,76.3,76.0,75.3,74.8,74.2,73.6]
+stairs_imoverlap_5=[74.5,75.6,76.6,77.0,77.1,77.1,77.1,77.0]
 
+## posenet
+chess_overlap_5p=[44.2,51.4,59.5,64.5,69.3,72.6,75.2,77.4]
+fire_overlap_5p=[45.9,54.3,64.8,71.8,77.0,79.5,80.7,81.8]
+heads_overlap_5p=[36.8,44.5,53.4,59.8,66.4,70.3,72.9,74.8]
+office_overlap_5p=[41.0,49.2,60.2,67.8,74.3,77.3,79.0,80.3]
+pumpkin_overlap_5p=[49.4,57.4,65.8,70.4,74.5,77.2,79.2,80.5]
+redkitchen_overlap_5p=[40.6,46.1,54.3,62.2,70.5,75.0,77.7,79.8]
+stairs_overlap_5p=[34.4,40.4,52.2,62.2,72.1,77.1,80.3,82.2]
+
+
+
+# depth overlap
+chess_imoverlap_5p=[63.2,63.5,63.8,64.2,64.5,64.8,64.9,65.0]
+fire_imoverlap_5p=[80.3,80.4,80.4,80.3,79.9,79.4,78.6,78.1]
+heads_imoverlap_5p=[75.7,75.9,75.8,75.7,75.5,75.5,75.5,75.5]
+office_imoverlap_5p=[63.6,64.4,65.3,65.5,65.2,64.6,63.8,63.1]
+pumpkin_imoverlap_5p=[64.4,65.1,66.0,66.5,66.8,67.0,67.1,67.2]
+redkitchen_imoverlap_5p=[57.5,59.6,63.6,66.9,69.2,69.9,69.9,69.5]
+stairs_imoverlap_5p=[66.2,71.0,75.0,76.6,77.1,77.2,77.1,76.9]
 
 
 
@@ -580,13 +660,33 @@ redkitchen_overlap_6=[46.7,54.6,64.7,71.7,78.0,81.2,83.1,84.2]
 stairs_overlap_6=[36.2,44.8,56.3,64.8,72.9,77.1,79.9,81.8]
 
 
-chess_overlap_6p=[]
-fire_overlap_6p=[]
-heads_overlap_6p=[]
-office_overlap_6p=[]
-pumpkin_overlap_6p=[]
-redkitchen_overlap_6p=[]
-stairs_overlap_6p=[]
+# depth overlap
+chess_imoverlap_6=[64.4,63.8,62.9,62.3,61.8,61.5,61.2,61.0]
+fire_imoverlap_6=[76.7,76.9,77.0,76.8,76.3,75.7,75.1,74.6]
+heads_imoverlap_6=[74.0,75.1,76.1,76.4,76.3,76.0,75.6,75.2]
+office_imoverlap_6=[56.6,56.8,57.1,57.4,57.5,57.5,57.3,57.0]
+pumpkin_imoverlap_6=[59.9,60.4,61.1,61.6,61.9,62.0,62.0,61.9]
+redkitchen_imoverlap_6=[72.0,71.9,71.5,71.0,70.3,69.6,68.9,68.3]
+stairs_imoverlap_6=[70.2,71.4,72.3,72.7,72.9,72.9,72.9,72.9]
+
+### posenet
+chess_overlap_6p=[40.4,47.7,56.3,61.8,67.1,70.7,73.6,75.9]
+fire_overlap_6p=[43.3,51.7,62.6,69.8,75.3,78.0,79.4,80.6]
+heads_overlap_6p=[32.6,40.5,49.9,56.9,64.1,68.3,71.1,73.2]
+office_overlap_6p=[37.2,45.6,57.1,65.1,72.1,75.4,77.3,78.7]
+pumpkin_overlap_6p=[47.0,55.0,63.6,68.4,72.8,75.7,77.8,79.3]
+redkitchen_overlap_6p=[37.5,43.2,51.8,60.1,68.8,73.6,76.5,78.6]
+stairs_overlap_6p=[30.7,37.0,49.3,59.9,70.3,75.8,79.1,81.2]
+
+
+# depth overlap
+chess_imoverlap_6p=[56.1,56.5,57.1,57.7,58.3,58.7,58.9,59.0]
+fire_imoverlap_6p=[74.9,75.2,75.4,75.4,75.1,74.7,74.0,73.5]
+heads_imoverlap_6p=[71.1,71.3,71.4,71.4,71.4,71.4,71.5,71.7]
+office_imoverlap_6p=[56.3,57.1,58.2,58.5,58.4,58.0,57.3,56.6]
+pumpkin_imoverlap_6p=[57.4,58.1,58.9,59.4,59.9,60.2,60.5,60.6]
+redkitchen_imoverlap_6p=[52.2,54.2,58.3,61.6,63.9,64.6,64.5,64.1]
+stairs_imoverlap_6p=[61.7,66.7,70.9,72.5,73.1,73.1,73.0,72.9]
 
 
 
@@ -601,29 +701,123 @@ redkitchen_overlap_7=[44.4,52.4,62.6,69.9,76.6,80.0,82.0,83.2]
 stairs_overlap_7=[34.1,42.6,54.3,63.0,71.4,75.9,78.8,80.8]
 
 
-chess_overlap_7p=[]
-fire_overlap_7p=[]
-heads_overlap_7p=[]
-office_overlap_7p=[]
-pumpkin_overlap_7p=[]
-redkitchen_overlap_7p=[]
-stairs_overlap_7p=[]
+# depth overlap
+chess_imoverlap_7=[58.0,57.5,56.9,56.5,56.2,56.1,55.9,55.7]
+fire_imoverlap_7=[72.0,72.2,72.5,72.4,72.0,71.5,71.0,70.5]
+heads_imoverlap_7=[70.6,71.7,72.7,73.0,72.8,72.4,72.0,71.6]
+office_imoverlap_7=[50.2,50.4,50.8,51.2,51.5,51.6,51.5,51.3]
+pumpkin_imoverlap_7=[53.6,54.1,54.8,55.4,55.9,56.1,56.3,56.3]
+redkitchen_imoverlap_7=[67.6,67.4,67.0,66.5,65.6,64.9,64.3,63.6]
+stairs_imoverlap_7=[66.7,67.8,68.7,69.1,69.2,69.3,69.3,69.3]
+
+#### posenet
+chess_overlap_7p=[37.1,44.6,53.3,59.3,65.1,69.0,72.1,74.6]
+fire_overlap_7p=[40.7,49.2,60.2,67.6,73.4,76.4,78.0,79.4]
+heads_overlap_7p=[28.9,36.7,46.7,54.1,62.0,66.5,69.6,71.8]
+office_overlap_7p=[34.0,42.3,54.3,62.7,70.1,73.6,75.7,77.2]
+pumpkin_overlap_7p=[44.7,52.7,61.4,66.5,71.2,74.2,76.4,78.0]
+redkitchen_overlap_7p=[34.9,40.6,49.5,58.1,67.3,72.3,75.3,]
+stairs_overlap_7p=[27.6,34.0,46.7,57.9,68.8,74.5,78.1,]
+
+# depth overlap
+chess_imoverlap_7p=[50.0,50.6,51.4,52.2,53.0,53.5,53.8,53.9]
+fire_imoverlap_7p=[70.1,70.4,70.8,70.9,70.6,70.2,69.6,69.2]
+heads_imoverlap_7p=[66.4,66.7,66.9,67.1,67.2,67.3,67.5,67.7]
+office_imoverlap_7p=[50.1,51.1,52.2,52.7,52.7,52.5,51.8,51.2]
+pumpkin_imoverlap_7p=[52.0,52.5,53.2,53.7,54.2,54.5,54.9,55.1]
+redkitchen_imoverlap_7p=[47.5,49.6,53.7,57.0,59.2,59.9,59.7,]
+stairs_imoverlap_7p=[57.9,63.0,67.3,68.9,69.5,69.6,69.5,]
+
 
 ####################### POSENET MASKING TEST RESULTS
 
+# mapnet 5x5 masking up to percentage of image covered  
 
-## I USED IMAGE MEAN HERE INSTEAD OF DATASET MEAN SINCE I AM RETARDED!!!
+val_chess_median_t_9p=[0.11,0.11,0.17,0.25,0.35,0.45,0.58,0.70,0.77,0.82,0.81]
+val_redkitchen_median_t_9p=[0.25,0.47,0.72,0.92,1.08,1.21,1.28,1.32,1.35,1.39,1.53]
+val_office_median_t_9p=[0.19,0.29,0.42,0.55,0.66,0.74,0.82,0.88,0.91,0.90,1.13]
+val_pumpkin_median_t_9p=[0.22,0.31,0.41,0.51,0.57,0.62,0.67,0.69,0.70,0.71,0.71]
+val_fire_median_t_9p=[0.27,0.29,0.34,0.44,0.58,0.66,0.73,0.77,0.78,0.78,0.89]
+val_heads_median_t_9p=[0.19,0.22,0.25,0.30,0.33,0.35,0.36,0.37,0.38,0.41,28.83]
+val_stairs_median_t_9p=[0.30,0.43,0.47,0.50,0.53,0.57,0.62,0.70,0.78,0.88,0.94]
+
+val_chess_median_r_9p=[4.29,4.23,6.18,8.69,11.33,13.82,17.21,20.87,22.96,24.30,24.80]
+val_redkitchen_median_r_9p=[5.27,9.12,17.40,25.74,30.65,33.87,35.60,35.63,35.26,35.57,41.08]
+val_office_median_r_9p=[6.36,10.73,18.23,24.17,30.69,35.65,39.38,44.26,46.87,45.12,51.44]
+val_pumpkin_median_r_9p=[5.06,8.22,12.31,16.03,20.02,24.26,28.12,33.03,35.92,35.31,40.09]
+val_fire_median_r_9p=[12.15,14.31,16.85,21.48,27.91,33.01,36.60,40.17,42.71,44.39,57.34]
+val_heads_median_r_9p=[12.15,15.65,18.60,20.82,22.60,23.44,23.97,23.94,24.14,24.30,36.56]
+val_stairs_median_r_9p=[11.29,13.67,14.44,14.87,15.25,15.70,15.98,16.51,17.36,18.50,29.36]
+
+# mapnet 9x9 masking up to percentage of image covered
+
+val_chess_median_t_10p=[0.11,0.10,0.15,0.23,0.35,0.47,0.61,0.71,0.77,0.82,0.81]
+val_redkitchen_median_t_10p=[0.25,0.41,0.62,0.82,0.97,1.11,1.21,1.26,1.30,1.38,1.53]
+val_office_median_t_10p=[0.19,0.25,0.35,0.46,0.58,0.69,0.80,0.87,0.89,0.90,1.13]
+val_pumpkin_median_t_10p=[0.22,0.27,0.34,0.45,0.53,0.59,0.64,0.69,0.70,0.70,0.71]
+val_fire_median_t_10p=[0.27,0.29,0.33,0.41,0.51,0.61,0.66,0.71,0.75,0.76,0.89]
+val_heads_median_t_10p=[0.19,0.21,0.23,0.27,0.31,0.34,0.37,0.39,0.42,0.42,28.83]
+val_stairs_median_t_10p=[0.30,0.42,0.43,0.46,0.49,0.55,0.62,0.71,0.81,0.90,0.94]
+
+val_chess_median_r_10p=[4.29,4.16,5.89,8.74,11.69,14.37,17.79,21.22,22.90,23.39,24.80]
+val_redkitchen_median_r_10p=[5.27,7.48,13.07,19.66,25.93,30.29,31.92,32.72,34.28,35.77,41.08]
+val_office_median_r_10p=[6.36,8.34,13.27,18.75,25.65,31.53,37.96,44.67,44.57,47.41,51.44]
+val_pumpkin_median_r_10p=[5.06,6.06,9.40,12.88,16.65,21.47,26.50,30.04,31.93,32.45,40.09]
+val_fire_median_r_10p=[12.15,13.89,16.31,19.54,26.78,32.30,37.04,41.01,43.65,45.14,57.34]
+val_heads_median_r_10p=[12.15,15.01,17.17,19.34,20.67,21.55,22.28,22.99,23.02,23.48,36.56]
+val_stairs_median_r_10p=[11.29,13.38,13.98,14.31,14.79,15.45,16.02,16.64,17.44,18.89,29.36]
+
+
+
+# posenet 5x5 masking up to percentage of image covered
+
+val_chess_median_t_7p=[0.11,0.16,0.23,0.31,0.40,0.52,0.64,0.75,0.79,0.81,0.81]
+val_redkitchen_median_t_7p=[0.25,0.38,0.64,0.90,1.09,1.23,1.31,1.34,1.34,1.33,1.53]
+val_office_median_t_7p=[0.19,0.26,0.38,0.52,0.65,0.75,0.82,0.87,0.89,0.92,1.13]
+val_pumpkin_median_t_7p=[0.22,0.34,0.44,0.54,0.63,0.68,0.71,0.72,0.72,0.71,0.71]
+val_fire_median_t_7p=[0.27,0.32,0.38,0.47,0.60,0.73,0.85,0.94,1.01,1.01,0.89]
+val_heads_median_t_7p=[0.19,0.24,0.29,0.33,0.35,0.36,0.37,0.37,0.39,0.46,28.83]
+val_stairs_median_t_7p=[0.30,0.46,0.48,0.49,0.52,0.56,0.59,0.62,0.65,0.69,0.94]
+
+val_chess_median_r_7p=[4.29,5.27,7.03,8.95,11.12,13.62,16.96,20.22,23.08,23.57,24.80]
+val_redkitchen_median_r_7p=[5.27,7.11,11.07,14.99,19.59,24.17,28.11,30.53,32.82,34.92,41.08]
+val_office_median_r_7p=[6.36,9.35,17.08,25.17,32.43,37.82,41.54,43.07,44.90,45.94,51.44]
+val_pumpkin_median_r_7p=[5.06,9.12,12.27,15.03,17.91,20.81,23.26,26.58,30.48,35.13,40.09]
+val_fire_median_r_7p=[12.15,14.39,19.30,26.90,34.24,40.42,46.12,50.87,54.97,57.85,57.34]
+val_heads_median_r_7p=[12.15,12.70,14.38,16.47,17.72,18.31,18.57,18.88,19.77,22.03,36.56]
+val_stairs_median_r_7p=[11.29,29.82,32.32,34.18,34.90,34.87,34.17,32.49,30.21,28.44,29.36]
 
 
 
 
 
-## blocking with 15x15 block of high activation points up to some percentage
+# posenet 9x9 masking up to percentage of image covered
+
+val_chess_median_t_8p=[0.11,0.14,0.19,0.27,0.37,0.49,0.62,0.75,0.80,0.82,0.81]
+val_redkitchen_median_t_8p=[0.25,0.34,0.52,0.79,1.00,1.14,1.23,1.27,1.28,1.31,1.53]
+val_office_median_t_8p=[0.19,0.26,0.36,0.50,0.62,0.71,0.79,0.85,0.90,0.96,1.13]
+val_pumpkin_median_t_8p=[0.22,0.30,0.37,0.46,0.53,0.62,0.69,0.72,0.72,0.71,0.71]
+val_fire_median_t_8p=[0.27,0.31,0.37,0.46,0.59,0.71,0.82,0.91,0.96,0.95,0.89]
+val_heads_median_t_8p=[0.19,0.23,0.28,0.32,0.35,0.37,0.38,0.41,0.45,0.52,28.83]
+val_stairs_median_t_8p=[0.30,0.44,0.46,0.46,0.49,0.52,0.56,0.59,0.64,0.67,0.94]
+
+val_chess_median_r_8p=[4.29,4.80,5.91,7.93,10.35,12.88,16.10,19.53,22.95,23.60,24.80]
+val_redkitchen_median_r_8p=[5.27,6.63,9.80,14.20,19.68,24.75,28.70,31.75,33.75,35.44,41.08]
+val_office_median_r_8p=[6.36,8.50,14.71,21.73,29.25,35.55,39.51,42.08,43.96,44.33,51.44]
+val_pumpkin_median_r_8p=[5.06,7.52,10.36,12.90,15.98,18.97,22.05,25.89,29.55,34.51,40.09]
+val_fire_median_r_8p=[12.15,14.69,19.77,27.60,35.11,41.74,48.01,52.37,55.02,57.32,57.34]
+val_heads_median_r_8p=[12.15,12.25,13.45,15.12,16.96,18.09,18.45,18.66,20.49,25.39,36.56]
+val_stairs_median_r_8p=[11.29,28.08,29.42,30.67,31.42,31.67,31.32,31.02,29.38,27.36,29.36]
+
+
+
+
+## posenet blocking with 15x15 block of high activation points up to some percentage
 ## percentages: 10 20 30 40 50 60 70 80 90
 
 
 val_chess_median_t_p=[0.11,0.13,0.17,0.25,0.35,0.47,0.62,0.74,0.78,0.81,0.81]
-val_redkitchen_median_t_p=[0.25,0.32,0.46,0.68,0.89,0.89,1.05,1.16,1.22,1.26,1.31,1.53]
+val_redkitchen_median_t_p=[0.25,0.32,0.46,0.68,0.89,1.05,1.16,1.22,1.26,1.31,1.53]
 val_office_median_t_p=[0.19,0.27,0.39,0.53,0.64,0.73,0.81,0.87,0.92,0.97,1.13]
 val_pumpkin_median_t_p=[0.22,0.28,0.33,0.42,0.51,0.58,0.65,0.69,0.71,0.72,0.71]
 val_fire_median_t_p=[0.27,0.32,0.40,0.49,0.62,0.74,0.83,0.88,0.91,0.91,0.89]
@@ -638,6 +832,9 @@ val_fire_median_r_p=[12.15,15.48,21.95,30.41,38.22,45.61,51.16,54.91,57.05,57.49
 val_heads_median_r_p=[12.15,12.01,13.32,15.18,17.06,18.45,18.86,20.14,22.00,30.39,36.56]
 val_stairs_median_r_p=[11.29,27.07,27.51,28.41,29.66,30.67,30.65,30.32,29.49,28.52,29.36]
 
+
+
+## I USED IMAGE MEAN HERE INSTEAD OF DATASET MEAN SINCE I AM RETARDED!!!
 
 
 ## wtf happened with stairs??
@@ -761,11 +958,25 @@ val_stairs_median_r4_p=[11.29,20.14,32.63,40.29,44.04,45.75,46.21,45.99,43.44,34
 
 
 ##### PLOTTING
+percentages2=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
+
+
+SMALL=12
+MEDIUM=16
+LARGE=18
+
+plt.rc('font',size=MEDIUM)
+plt.rc('axes',titlesize=MEDIUM)
+plt.rc('axes',labelsize=SMALL)
+plt.rc('xtick',labelsize=SMALL)
+plt.rc('ytick',labelsize=SMALL)
+plt.rc('legend',fontsize=MEDIUM)
+plt.rc('figure',titlesize=LARGE)
+'''
 ####### masking top, bottom and random activations
 
  ############# activation translation plots
-percentages2=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
 plt.figure(1)
 plt.suptitle('Chess, translation error')
@@ -1107,28 +1318,38 @@ plt.ylabel('Error,(degrees)')
 plt.grid(True)
 plt.legend()
 plt.show()
+'''
 
-########### 15x15 comparison between networks
+
+
+########### 15x15,9x9,5x5 comparison between networks
 
 plt.figure(1)
 plt.suptitle('Chess, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_chess_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_chess_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+#plt.title('PoseNet')
+plt.plot(percentages2,val_chess_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_chess_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_chess_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_chess_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_chess_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_chess_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,30])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
 plt.legend()
 plt.show()
 
-
+#sys.exit(-1)
 plt.figure(2)
 plt.suptitle('Chess, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_chess_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_chess_median_t_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,1])
+plt.plot(percentages2,val_chess_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_chess_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_chess_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_chess_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_chess_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_chess_median_t_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,0.9])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
 plt.grid(True)
@@ -1137,10 +1358,13 @@ plt.show()
 
 plt.figure(3)
 plt.suptitle('Fire, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_fire_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_fire_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+plt.plot(percentages2,val_fire_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_fire_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_fire_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_fire_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_fire_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_fire_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,60])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
@@ -1150,10 +1374,13 @@ plt.show()
 
 plt.figure(4)
 plt.suptitle('Fire, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_fire_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_fire_median_t_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,1])
+plt.plot(percentages2,val_fire_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_fire_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_fire_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_fire_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_fire_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_fire_median_t_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,1.1])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
 plt.grid(True)
@@ -1163,10 +1390,13 @@ plt.show()
 
 plt.figure(5)
 plt.suptitle('Office, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_office_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_office_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+plt.plot(percentages2,val_office_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_office_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_office_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_office_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_office_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_office_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,55])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
@@ -1176,10 +1406,13 @@ plt.show()
 
 plt.figure(6)
 plt.suptitle('Office, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_office_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_office_median_t_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,1])
+plt.plot(percentages2,val_office_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_office_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_office_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_office_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_office_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_office_median_t_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,1.3])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
 plt.grid(True)
@@ -1189,10 +1422,13 @@ plt.show()
 
 plt.figure(7)
 plt.suptitle('Heads, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_heads_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_heads_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+plt.plot(percentages2,val_heads_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_heads_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_heads_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_heads_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_heads_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_heads_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,40])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
@@ -1202,10 +1438,13 @@ plt.show()
 
 plt.figure(8)
 plt.suptitle('Heads, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_heads_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_heads_median_t_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,1])
+plt.plot(percentages2,val_heads_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_heads_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_heads_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_heads_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_heads_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_heads_median_t_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,0.7])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
 plt.grid(True)
@@ -1215,10 +1454,13 @@ plt.show()
 
 plt.figure(10)
 plt.suptitle('Pumpkin, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_pumpkin_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_pumpkin_median_t_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,1])
+plt.plot(percentages2,val_pumpkin_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_pumpkin_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_pumpkin_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_pumpkin_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_pumpkin_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_pumpkin_median_t_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,0.8])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
 plt.grid(True)
@@ -1228,10 +1470,13 @@ plt.show()
 
 plt.figure(11)
 plt.suptitle('Pumpkin, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_pumpkin_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_pumpkin_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+plt.plot(percentages2,val_pumpkin_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_pumpkin_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_pumpkin_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_pumpkin_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_pumpkin_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_pumpkin_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,45])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
@@ -1241,10 +1486,13 @@ plt.show()
 
 plt.figure(12)
 plt.suptitle('Redkitchen, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_redkitchen_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_redkitchen_median_t_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,1])
+plt.plot(percentages2,val_redkitchen_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_redkitchen_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_redkitchen_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_redkitchen_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_redkitchen_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_redkitchen_median_t_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,1.65])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
 plt.grid(True)
@@ -1254,10 +1502,13 @@ plt.show()
 
 plt.figure(13)
 plt.suptitle('Redkitchen, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_redkitchen_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_redkitchen_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+plt.plot(percentages2,val_redkitchen_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_redkitchen_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_redkitchen_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_redkitchen_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_redkitchen_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_redkitchen_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,45])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
@@ -1267,9 +1518,12 @@ plt.show()
 
 plt.figure(14)
 plt.suptitle('Stairs, translation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_stairs_median_t_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_stairs_median_t_4,'r--',label='MapNet median, 15x15')
+plt.plot(percentages2,val_stairs_median_t_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_stairs_median_t_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_stairs_median_t_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_stairs_median_t_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_stairs_median_t_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_stairs_median_t_9p,'bo',label='MapNet median, 5x5')
 plt.axis([0,110,0,1])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(m)')
@@ -1281,10 +1535,13 @@ plt.show()
 
 plt.figure(15)
 plt.suptitle('Stairs, rotation error')
-plt.title('PoseNet')
-plt.plot(percentages2,val_stairs_median_r_p,'y--',label='PoseNet median, 15x15')
-plt.plot(percentages,val_stairs_median_r_4,'r--',label='MapNet median, 15x15')
-plt.axis([0,110,0,50])
+plt.plot(percentages2,val_stairs_median_r_p,'r--',label='PoseNet median, 15x15')
+plt.plot(percentages,val_stairs_median_r_4,'ro',label='MapNet median, 15x15')
+plt.plot(percentages2,val_stairs_median_r_8p,'k--',label='PoseNet median, 9x9')
+plt.plot(percentages2,val_stairs_median_r_10p,'ko',label='MapNet median, 9x9')
+plt.plot(percentages2,val_stairs_median_r_7p,'b--',label='PoseNet median, 5x5')
+plt.plot(percentages2,val_stairs_median_r_9p,'bo',label='MapNet median, 5x5')
+plt.axis([0,110,0,40])
 plt.xlabel('Percentage of image masked')
 plt.ylabel('Error,(degrees)')
 plt.grid(True)
