@@ -895,7 +895,6 @@ stairs_ratio11=[]
 
 
 
-####################### POSENET MASKING TEST RESULTS
 
 # mapnet 5x5 masking up to percentage of image covered  
 
@@ -1120,7 +1119,6 @@ val_pumpkin_median_r4_p=[5.06,14.09,22.04,28.50,33.50,39.58,46.18,52.54,57.90,60
 val_fire_median_r4_p=[12.15,22.22,34.76,44.00,48.75,51.97,54.15,55.26,55.36,55.40,57.35]
 val_heads_median_r4_p=[12.15,16.89,19.37,21.18,21.78,22.30,23.08,24.00,24.79,25.69,46.61]
 val_stairs_median_r4_p=[11.29,20.14,32.63,40.29,44.04,45.75,46.21,45.99,43.44,34.56,28.74]
-
 
 
 ##### PLOTTING
@@ -1836,6 +1834,8 @@ plt.show()
 ## overlap with 2 frames skipped
 
 
+'''
+# masked most large gradient points 
 plt.figure(1)
 plt.plot(percentages3, chess_overlap_4,'r--',label='chess')
 plt.plot(percentages3, fire_overlap_4,'k--',label='fire')
