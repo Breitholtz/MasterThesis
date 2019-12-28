@@ -716,8 +716,8 @@ fire_overlap_7p=[40.7,49.2,60.2,67.6,73.4,76.4,78.0,79.4]
 heads_overlap_7p=[28.9,36.7,46.7,54.1,62.0,66.5,69.6,71.8]
 office_overlap_7p=[34.0,42.3,54.3,62.7,70.1,73.6,75.7,77.2]
 pumpkin_overlap_7p=[44.7,52.7,61.4,66.5,71.2,74.2,76.4,78.0]
-redkitchen_overlap_7p=[34.9,40.6,49.5,58.1,67.3,72.3,75.3,]
-stairs_overlap_7p=[27.6,34.0,46.7,57.9,68.8,74.5,78.1,]
+redkitchen_overlap_7p=[34.9,40.6,49.5,58.1,67.3,72.3,75.3,77.5]
+stairs_overlap_7p=[27.6,34.0,46.7,57.9,68.8,74.5,78.1,80.2]
 
 # depth overlap
 chess_imoverlap_7p=[50.0,50.6,51.4,52.2,53.0,53.5,53.8,53.9]
@@ -725,8 +725,174 @@ fire_imoverlap_7p=[70.1,70.4,70.8,70.9,70.6,70.2,69.6,69.2]
 heads_imoverlap_7p=[66.4,66.7,66.9,67.1,67.2,67.3,67.5,67.7]
 office_imoverlap_7p=[50.1,51.1,52.2,52.7,52.7,52.5,51.8,51.2]
 pumpkin_imoverlap_7p=[52.0,52.5,53.2,53.7,54.2,54.5,54.9,55.1]
-redkitchen_imoverlap_7p=[47.5,49.6,53.7,57.0,59.2,59.9,59.7,]
-stairs_imoverlap_7p=[57.9,63.0,67.3,68.9,69.5,69.6,69.5,]
+redkitchen_imoverlap_7p=[47.5,49.6,53.7,57.0,59.2,59.9,59.7,59.3]
+stairs_imoverlap_7p=[57.9,63.0,67.3,68.9,69.5,69.6,69.5,69.3]
+
+
+
+## skip 10 frames
+
+#### mapnet
+chess_overlap_8=[]
+fire_overlap_8=[]
+heads_overlap_8p=[]
+office_overlap_8=[]
+pumpkin_overlap_8=[]
+redkitchen_overlap_8=[]
+stairs_overlap_8=[]
+
+# depth overlap
+chess_imoverlap_8=[]
+fire_imoverlap_8=[]
+heads_imoverlap_8=[]
+office_imoverlap_8=[]
+pumpkin_imoverlap_8=[]
+redkitchen_imoverlap_8=[]
+stairs_imoverlap_8=[]
+
+#### posenet
+chess_overlap_8p=[24.5,31.5,40.9,48.2]
+fire_overlap_8p=[30.4,38.5,49.9,58.1]
+heads_overlap_8p=[17.1,23.9,34.1,42.9]
+office_overlap_8p=[22.9,30.8,43.2,52.6]
+pumpkin_overlap_8p=[35.6,43.5,52.8,58.6]
+redkitchen_overlap_8p=[25.1,30.8,40.6,50.3]
+stairs_overlap_8p=[19.0,25.2,38.4,50.8]
+
+# depth overlap
+chess_imoverlap_8p=[31.0,31.9,33.2,34.5]
+fire_imoverlap_8p=[50.9,51.3,52.1,52.6]
+heads_imoverlap_8p=[49.6,50.0,50.6,51.0]
+office_imoverlap_8p=[32.8,33.8,35.1,35.7]
+pumpkin_imoverlap_8p=[34.8,35.3,35.8,36.1]
+redkitchen_imoverlap_8p=[32.4,34.2,37.9,40.9]
+stairs_imoverlap_8p=[44.6,50.3,54.9,56.7]
+
+
+## skip 20 frames
+
+#### mapnet
+chess_overlap_9=[]
+fire_overlap_9=[]
+heads_overlap_9=[]
+office_overlap_9=[]
+pumpkin_overlap_9=[]
+redkitchen_overlap_9=[]
+stairs_overlap_9=[]
+
+# depth overlap
+chess_imoverlap_9=[]
+fire_imoverlap_9=[]
+heads_imoverlap_9=[]
+office_imoverlap_9=[]
+pumpkin_imoverlap_9=[]
+redkitchen_imoverlap_9=[]
+stairs_imoverlap_9=[]
+
+#### posenet
+chess_overlap_9p=[13.0,18.1,26.3,33.9]
+fire_overlap_9p=[18.7,25.2,35.5,44.0]
+heads_overlap_9p=[8.7,13.3,21.6,30.0]
+office_overlap_9p=[13.0,19.2,30.1,39.4]
+pumpkin_overlap_9p=[24.9,31.7,40.7,46.9]
+redkitchen_overlap_9p=[15.4,20.4,29.8]
+stairs_overlap_9p=[11.7,17.0,29.2]
+
+# depth overlap
+chess_imoverlap_9p=[17.7,18.5,19.9,21.2]
+fire_imoverlap_9p=[32.0,32.4,33.1,33.7]
+heads_imoverlap_9p=[33.6,33.8,34.1,34.5]
+office_imoverlap_9p=[19.2,20.0,21.4,22.1]
+pumpkin_imoverlap_9p=[20.3,20.6,20.9,21.2]
+redkitchen_imoverlap_9p=[19.3,20.4,23.3]
+stairs_imoverlap_9p=[32.5,37.6,41.8]
+
+
+########## overlap and depth consistent over depth consistent ratio
+
+
+
+## adjacent frames
+
+#### mapnet
+chess_ratio=[]
+fire_ratio=[]
+heads_ratio=[]
+office_ratio=[]
+pumpkin_ratio=[]
+redkitchen_ratio=[]
+stairs_ratio=[]
+
+#### posenet
+chess_ratio=[,76.1,83.2,87.3,87.3,90.9,93.3,95.2,96.8]
+fire_ratio=[66.1,73.7,82.6,88.1,92.3,94.6,96.2,97.4]
+heads_ratio=[68.7,75.3,82.5,87.4,92.2,94.8,96.5,97.7]
+office_ratio=[63.3,70.6,79.9,85.8,90.7,93.2,94.9,96.3]
+pumpkin_ratio=[70.1,77.9,85.5,89.5,93.0,95.1,96.8,97.9]
+redkitchen_ratio=[70.8,75.8,81.5,86.4,91.2,93.8,95.3,96.6]
+stairs_ratio=[64.4,68.7,77.0,83.7,90.5,94.1,96.4,97.8]
+
+## 5 skipped
+
+##### mapnet
+chess_ratio5=[]
+fire_ratio5=[]
+heads_ratio5=[]
+office_ratio5=[]
+pumpkin_ratio5=[]
+redkitchen_ratio5=[]
+stairs_ratio5=[]
+
+### posenet
+chess_ratio5=[]
+fire_ratio5=[]
+heads_ratio5=[]
+office_ratio5=[]
+pumpkin_ratio5=[]
+redkitchen_ratio5=[]
+stairs_ratio5=[]
+
+## 10 skipped
+
+##### mapnet
+chess_ratio10=[]
+fire_ratio10=[]
+heads_ratio10=[]
+office_ratio10=[]
+pumpkin_ratio10=[]
+redkitchen_ratio10=[]
+stairs_ratio10=[]
+
+### posenet
+chess_ratio10=[]
+fire_ratio10=[]
+heads_ratio10=[]
+office_ratio10=[]
+pumpkin_ratio10=[]
+redkitchen_ratio10=[]
+stairs_ratio10=[]
+
+## 20 skipped 
+
+##### mapnet
+chess_ratio11=[]
+fire_ratio11=[]
+heads_ratio11=[]
+office_ratio11=[]
+pumpkin_ratio11=[]
+redkitchen_ratio11=[]
+stairs_ratio11=[]
+
+### posenet
+chess_ratio11=[]
+fire_ratio11=[]
+heads_ratio11=[]
+office_ratio11=[]
+pumpkin_ratio11=[]
+redkitchen_ratio11=[]
+stairs_ratio11=[]
+
+
 
 
 ####################### POSENET MASKING TEST RESULTS
@@ -1320,7 +1486,7 @@ plt.legend()
 plt.show()
 '''
 
-
+'''
 
 ########### 15x15,9x9,5x5 comparison between networks
 
@@ -1554,63 +1720,33 @@ plt.show()
 
 sys.exit(-1)
 
+'''
 
+## compute activation consistency/depth consistency
 
-plt.figure(1)
-plt.subplot(121)
-plt.plot(block_percentages, val_fire_mean_t_5,'r--',label='mean, 15x15')
-plt.plot(block_percentages, val_fire_median_t_5,'bo',label='median, 15x15')
-plt.plot(block_percentages_2, val_fire_mean_t_6,'k--',label='mean, 9x9')
-plt.plot(block_percentages_2, val_fire_median_t_6,'g^',label='median,9x9')
-plt.plot(block_percentages_3, val_fire_mean_t_7,'y--',label='mean, 5x5')
-plt.plot(block_percentages_3, val_fire_median_t_7,'ms',label='median,5x5')
-plt.axis([0,110,0,0.90])
-plt.title('Fire val, translation errors')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points masked')
-plt.ylabel('Error,(m)')
-plt.legend()
-plt.subplot(122)
-plt.plot(block_percentages,val_fire_mean_r_5,'r--',label='mean, 15x15')
-plt.plot(block_percentages,val_fire_median_r_5,'bo',label='median, 15x15')
-plt.plot(block_percentages_2,val_fire_mean_r_6,'k--',label='mean, 9x9')
-plt.plot(block_percentages_2,val_fire_median_r_6,'g^',label='median, 9x9')
-plt.plot(block_percentages_3, val_fire_mean_r_7,'y--',label='mean, 5x5')
-plt.plot(block_percentages_3, val_fire_median_r_7,'ms',label='median,5x5')
-plt.axis([0,110,0,55])
-plt.title('Fire val, rotation errors')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points masked')
-plt.ylabel('Error,(degrees)')
-plt.legend()
-plt.show()
+acdc1=[i/j for i,j in zip(chess_overlap_2,chess_imoverlap_2)]
+acdc2=[i/j for i,j in zip(chess_overlap_3,chess_imoverlap_3)]
+acdc3=[i/j for i,j in zip(chess_overlap_4,chess_imoverlap_4)]
+acdc4=[i/j for i,j in zip(chess_overlap_5,chess_imoverlap_5)]
+acdc5=[i/j for i,j in zip(chess_overlap_6,chess_imoverlap_6)]
+acdc6=[i/j for i,j in zip(chess_overlap_7,chess_imoverlap_7)]
+
+#print(acdc1)
+
+percentages3=[1,2,5,10,20,30,40,50]
 
 plt.figure(1)
-plt.subplot(121)
-plt.plot(block_percentages, val_heads_mean_t_5,'r--',label='mean, 15x15')
-plt.plot(block_percentages, val_heads_median_t_5,'bo',label='median, 15x15')
-plt.plot(block_percentages_2, val_heads_mean_t_6,'k--',label='mean, 9x9')
-plt.plot(block_percentages_2, val_heads_median_t_6,'g^',label='median,9x9')
-plt.plot(block_percentages_3, val_heads_mean_t_7,'y--',label='mean, 5x5')
-plt.plot(block_percentages_3, val_heads_median_t_7,'ms',label='median,5x5')
-plt.axis([0,110,0,0.60])
-plt.title('Heads val, translation errors')
+plt.plot(percentages3, acdc1,'r--',label='chess adjacent')
+plt.plot(percentages3, acdc2,'k--',label='chess skip 1')
+plt.plot(percentages3, acdc3,'g--',label='chess skip 2')
+plt.plot(percentages3, acdc4,'b--',label='chess skip 3')
+plt.plot(percentages3, acdc5,'o--',label='chess skip 4')
+plt.plot(percentages3, acdc6,'^--',label='chess skip 5')
+plt.axis([0,60,0,1.5])
+plt.title('Chess, activation overlap over depth overlap')
 plt.grid(True)
-plt.xlabel('Percentage of gradient points masked')
-plt.ylabel('Error,(m)')
-plt.legend()
-plt.subplot(122)
-plt.plot(block_percentages,val_heads_mean_r_5,'r--',label='mean, 15x15')
-plt.plot(block_percentages,val_heads_median_r_5,'bo',label='median, 15x15')
-plt.plot(block_percentages_2,val_heads_mean_r_6,'k--',label='mean, 9x9')
-plt.plot(block_percentages_2,val_heads_median_r_6,'g^',label='median, 9x9')
-plt.plot(block_percentages_3, val_heads_mean_r_7,'y--',label='mean, 5x5')
-plt.plot(block_percentages_3, val_heads_median_r_7,'ms',label='median,5x5')
-plt.axis([0,110,0,35])
-plt.title('Heads val, rotation errors')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points masked')
-plt.ylabel('Error,(degrees)')
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Ac/Dc')
 plt.legend()
 plt.show()
 
@@ -1618,17 +1754,286 @@ plt.show()
 
 
 
+################ OVERLAP PLOTS
+
+percentages3=[1,2,5,10,20,30,40,50]
+
+### overlap between frames plots
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_2,'r--',label='chess adjacent')
+plt.plot(percentages3, chess_overlap_3,'k--',label='chess skip 1')
+plt.plot(percentages3, chess_overlap_4,'g--',label='chess skip 2')
+plt.plot(percentages3, chess_overlap_5,'b--',label='chess skip 3')
+plt.plot(percentages3, chess_overlap_6,'o--',label='chess skip 4')
+plt.plot(percentages3, chess_overlap_7,'^--',label='chess skip 5')
+plt.axis([0,60,0,100])
+plt.title('Chess, activation overlap')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_imoverlap_2,'r--',label='chess adjacent')
+plt.plot(percentages3, chess_imoverlap_3,'k--',label='chess skip 1')
+plt.plot(percentages3, chess_imoverlap_4,'g--',label='chess skip 2')
+plt.plot(percentages3, chess_imoverlap_5,'b--',label='chess skip 3')
+plt.plot(percentages3, chess_imoverlap_6,'o--',label='chess skip 4')
+plt.plot(percentages3, chess_imoverlap_7,'^--',label='chess skip 5')
+plt.axis([0,60,0,100])
+plt.title('Chess, depth consistency')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+
+
+sys.exit(-1)
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_2,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_2,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_2,'g--',label='heads')
+plt.plot(percentages3, office_overlap_2,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_2,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_2,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_2,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+## overlap with 1 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_3,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_3,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_3,'g--',label='heads')
+plt.plot(percentages3, office_overlap_3,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_3,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_3,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_3,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 1 frame skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+## overlap with 2 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_4,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_4,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_4,'g--',label='heads')
+plt.plot(percentages3, office_overlap_4,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_4,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_4,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_4,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 2 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+## overlap with 3 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_5,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_5,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_5,'g--',label='heads')
+plt.plot(percentages3, office_overlap_5,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_5,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_5,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_5,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 3 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+## overlap with 4 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_6,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_6,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_6,'g--',label='heads')
+plt.plot(percentages3, office_overlap_6,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_6,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_6,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_6,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 4 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
 
 
 
 
 
+ #### overlap 5 skipped frames
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_7,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_7,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_7,'g--',label='heads')
+plt.plot(percentages3, office_overlap_7,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_7,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_7,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_7,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 5 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+################# POSENET OVERLAP
+
+### overlap between frames plots
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_2p,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_2p,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_2p,'g--',label='heads')
+plt.plot(percentages3, office_overlap_2p,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_2p,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_2p,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_2p,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+## overlap with 1 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_3p,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_3p,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_3p,'g--',label='heads')
+plt.plot(percentages3, office_overlap_3p,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_3p,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_3p,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_3p,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 1 frame skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+## overlap with 2 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_4p,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_4p,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_4p,'g--',label='heads')
+plt.plot(percentages3, office_overlap_4p,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_4p,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_4p,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_4p,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 2 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+## overlap with 3 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_5p,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_5p,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_5p,'g--',label='heads')
+plt.plot(percentages3, office_overlap_5p,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_5p,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_5p,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_5p,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 3 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
+
+
+## overlap with 4 frames skipped
+
+
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_6p,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_6p,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_6p,'g--',label='heads')
+plt.plot(percentages3, office_overlap_6p,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_6p,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_6p,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_6p,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 4 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
 
 
 
 
 
+ #### overlap 5 skipped frames
+plt.figure(1)
+plt.plot(percentages3, chess_overlap_7p,'r--',label='chess')
+plt.plot(percentages3, fire_overlap_7p,'k--',label='fire')
+plt.plot(percentages3, heads_overlap_7p,'g--',label='heads')
+plt.plot(percentages3, office_overlap_7p,'b--',label='office')
+plt.plot(percentages3, pumpkin_overlap_7p,'o--',label='pumpkin')
+plt.plot(percentages3, redkitchen_overlap_7p,'^--',label='redkitchen')
+plt.plot(percentages3, stairs_overlap_7p,'*--',label='stairs')
+plt.axis([0,60,0,100])
+plt.title('Overlap between image frames with 5 frames skipped')
+plt.grid(True)
+plt.xlabel('Percentage of gradient points projected')
+plt.ylabel('Amount of projection matches')
+plt.legend()
+plt.show()
 
+
+sys.exit(-1)
 
 
 
@@ -1682,115 +2087,6 @@ plt.show()
 
 sys.exit(-1)
 '''
-### overlap between frames plots
-overlap_percentage=[1, 2, 5, 10, 20, 30, 40, 50, 60]
-overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
-
-
-plt.figure(1)
-plt.plot(overlap_percentage_2, chess_overlap_2,'r--',label='chess')
-plt.plot(overlap_percentage_2, fire_overlap_2,'k--',label='fire')
-plt.plot(overlap_percentage_2, heads_overlap_2,'g--',label='heads')
-plt.plot(overlap_percentage_2, office_overlap_2,'b--',label='office')
-plt.plot(overlap_percentage_2, pumpkin_overlap_2,'o--',label='pumpkin')
-plt.plot(overlap_percentage_2, redkitchen_overlap_2,'^--',label='redkitchen')
-plt.plot(overlap_percentage_2, stairs_overlap_2,'*--',label='stairs')
-plt.axis([0,60,0,100])
-plt.title('Overlap between image frames')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points projected')
-plt.ylabel('Amount of projection matches')
-plt.legend()
-plt.show()
-
-
-## overlap with 1 frames skipped
-overlap_percentage_3=[1, 2, 5, 10, 20, 30, 40]
-#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
-
-
-plt.figure(1)
-plt.plot(overlap_percentage_3, chess_overlap_3,'r--',label='chess')
-plt.plot(overlap_percentage_3, fire_overlap_3,'k--',label='fire')
-plt.plot(overlap_percentage_3, heads_overlap_3,'g--',label='heads')
-plt.plot(overlap_percentage_3, office_overlap_3,'b--',label='office')
-plt.plot(overlap_percentage_3, pumpkin_overlap_3,'o--',label='pumpkin')
-plt.plot(overlap_percentage_3, redkitchen_overlap_3,'^--',label='redkitchen')
-plt.plot(overlap_percentage_3, stairs_overlap_3,'*--',label='stairs')
-plt.axis([0,60,0,100])
-plt.title('Overlap between image frames with 1 frame skipped')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points projected')
-plt.ylabel('Amount of projection matches')
-plt.legend()
-plt.show()
-
-## overlap with 2 frames skipped
-overlap_percentage_4=[1, 2, 5, 10, 20, 30, 40]
-#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
-
-
-plt.figure(1)
-plt.plot(overlap_percentage_4, chess_overlap_4,'r--',label='chess')
-plt.plot(overlap_percentage_4, fire_overlap_4,'k--',label='fire')
-plt.plot(overlap_percentage_4, heads_overlap_4,'g--',label='heads')
-plt.plot(overlap_percentage_4, office_overlap_4,'b--',label='office')
-plt.plot(overlap_percentage_4, pumpkin_overlap_4,'o--',label='pumpkin')
-plt.plot(overlap_percentage_4, redkitchen_overlap_4,'^--',label='redkitchen')
-plt.plot(overlap_percentage_4, stairs_overlap_4,'*--',label='stairs')
-plt.axis([0,60,0,100])
-plt.title('Overlap between image frames with 2 frames skipped')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points projected')
-plt.ylabel('Amount of projection matches')
-plt.legend()
-plt.show()
-
-## overlap with 3 frames skipped
-overlap_percentage_5=[1, 2, 5, 10, 20, 30, 40]
-#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
-
-
-plt.figure(1)
-plt.plot(overlap_percentage_5, chess_overlap_5,'r--',label='chess')
-plt.plot(overlap_percentage_5, fire_overlap_5,'k--',label='fire')
-plt.plot(overlap_percentage_5, heads_overlap_5,'g--',label='heads')
-plt.plot(overlap_percentage_5, office_overlap_5,'b--',label='office')
-plt.plot(overlap_percentage_5, pumpkin_overlap_5,'o--',label='pumpkin')
-plt.plot(overlap_percentage_5, redkitchen_overlap_5,'^--',label='redkitchen')
-plt.plot(overlap_percentage_5, stairs_overlap_5,'*--',label='stairs')
-plt.axis([0,60,0,100])
-plt.title('Overlap between image frames with 3 frames skipped')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points projected')
-plt.ylabel('Amount of projection matches')
-plt.legend()
-plt.show()
-
-
-## overlap with 4 frames skipped
-overlap_percentage_6=[1, 2, 5, 10, 20, 30, 40]
-#overlap_percentage_2=[1, 2, 5, 10, 20, 30, 40, 50]
-
-
-plt.figure(1)
-plt.plot(overlap_percentage_6, chess_overlap_6,'r--',label='chess')
-plt.plot(overlap_percentage_6, fire_overlap_6,'k--',label='fire')
-plt.plot(overlap_percentage_6, heads_overlap_6,'g--',label='heads')
-plt.plot(overlap_percentage_6, office_overlap_6,'b--',label='office')
-plt.plot(overlap_percentage_6, pumpkin_overlap_6,'o--',label='pumpkin')
-plt.plot(overlap_percentage_6, redkitchen_overlap_6,'^--',label='redkitchen')
-plt.plot(overlap_percentage_6, stairs_overlap_6,'*--',label='stairs')
-plt.axis([0,60,0,100])
-plt.title('Overlap between image frames with 4 frames skipped')
-plt.grid(True)
-plt.xlabel('Percentage of gradient points projected')
-plt.ylabel('Amount of projection matches')
-plt.legend()
-plt.show()
-
-sys.exit(-1)
-
 
 
 
@@ -2272,7 +2568,7 @@ plt.show()
 sys.exit(-1)
 '''
 
-
+'''
 ### plotting the pixelwise masking
 
 plt.figure(1)
@@ -2481,4 +2777,4 @@ plt.show()
 #imgmean_chess
 
 #datamean_val_chess_t
-
+'''
